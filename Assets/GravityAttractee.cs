@@ -5,7 +5,8 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class GravityAttractee : MonoBehaviour {
-    private Vector3 NULL_VECTOR = new Vector3(-10, -10, -10);
+    [SerializeField] private float localGravityStrength = 1f;
+    private Vector3 NULL_VECTOR = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
     private Rigidbody _rigidbody;
 
     private Vector3 _gravityForce;
@@ -58,7 +59,7 @@ public class GravityAttractee : MonoBehaviour {
             var attractor = hitInfo.collider.gameObject.GetComponent<GravityAttractor>();
             if (attractor != null) {
                  ChangeRotation(hitInfo.normal);
-                 Vector3 gravityForce = attractor.Gravity * (hitInfo.normal * -1);
+                 Vector3 gravityForce = (attractor.Gravity * localGravityStrength) * (hitInfo.normal * -1);
                  return gravityForce;
             }
         }

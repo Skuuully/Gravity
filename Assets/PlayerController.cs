@@ -8,6 +8,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
     private Rigidbody _rigidbody;
     private PlayerInput _playerInput;
+    [SerializeField] private Weapon weapon;
 
     [SerializeField] private float moveSpeed = 5f;
     
@@ -15,6 +16,12 @@ public class PlayerController : MonoBehaviour {
     void Start() {
         _rigidbody = GetComponent<Rigidbody>();
         _playerInput = GetComponent<PlayerInput>();
+    }
+
+    private void Update() {
+        if (_playerInput.fire) {
+            weapon.Shoot();
+        }
     }
 
     private void FixedUpdate() {
