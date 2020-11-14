@@ -12,7 +12,6 @@ namespace Test {
         private Mesh _mesh;
 
         private List<Node> _navPoints = new List<Node>();
-        private List<Node> open = new List<Node>();
 
         [SerializeField] private int subdivide = 0;
         [SerializeField] private float vertexExplode = 1f;
@@ -30,19 +29,48 @@ namespace Test {
             GenerateFlowField(_navPoints[0].position);
         }
 
+        private void FixedUpdate() {
+            if (playerTransform != null) {
+                GenerateFlowField(playerTransform.position);
+            }
+        }
+
+        public Vector3 GetNearestDirection(Vector3 position) {
+            return GetNearestNode(position).direction;
+        }
+
+        public Node GetNearestNode(Vector3 position) {
+            Node nearestNode = _navPoints[0];
+            foreach (Node node in _navPoints) {
+                if ((position - node.position).magnitude < (position - nearestNode.position).magnitude) {
+                    nearestNode = node;
+                    if (position == node.position || VectorsClose(position, node.position)) {
+                        break;
+                    }
+                }
+            }
+
+            return nearestNode;
+        }
+
+        private bool VectorsClose(Vector3 v1, Vector3 v2) {
+            return (v1 - v2).magnitude < 0.3f;
+        }
+
         void GenerateFlowField(Vector3 targetPosition) {
-            Node targetNode = _navPoints.Find(node => node.position == targetPosition);
+            Node targetNode = GetNearestNode(targetPosition);
             if (targetNode == null) {
                 Debug.LogError("Attempted to generate flow field, however no final node of position found");
                 return;
             }
 
             SetAllNodesUnreachable();
-            int currentValue = 0;
-            Node currentNode = targetNode;
-            targetNode.value = currentValue;
+            targetNode.value = 0;
+            targetNode.direction = targetPosition - targetNode.position;
+            targetNode.direction.Normalize();
 
-            open.Add(currentNode);
+            Node currentNode = targetNode;
+            List<Node> open = new List<Node> {currentNode};
             while (open.Count > 0) {
                 currentNode = open[0];
                 open.Remove(currentNode);
@@ -52,7 +80,7 @@ namespace Test {
                         if (!open.Contains(connectedNode)) {
                             open.Add(connectedNode);
                         }
-                        connectedNode.value = pathLength;
+                        connectedNode.SetValue(pathLength, currentNode);
                     }
                 }
             }
@@ -128,11 +156,7 @@ namespace Test {
                 color.a = 1f;
                 Gizmos.color = color;
                 Gizmos.DrawSphere(navPoint.position, 0.1f);
-            
-                foreach (Node connectedNode in navPoint.connectedNodes) {
-                    //Gizmos.color = Color.cyan;
-                    Gizmos.DrawLine(navPoint.position, connectedNode.position);
-                }
+                Gizmos.DrawLine(navPoint.position, navPoint.position + navPoint.direction);
             }
         }
     }
@@ -142,6 +166,7 @@ namespace Test {
         public List<Node> connectedNodes = new List<Node>();
         public int cost = 1;
         public int value = int.MaxValue;
+        public Vector3 direction;
 
         public Node(Vector3 position = new Vector3(), params Node[] connected) {
             this.position = position;
@@ -190,6 +215,12 @@ namespace Test {
             }
 
             node.ClearNodes();
+        }
+
+        public void SetValue(int value, Node shortNode) {
+            this.value = value;
+            direction = shortNode.position - position;
+            direction.Normalize();
         }
 
     }

@@ -54,7 +54,7 @@ public class GravityAttractee : MonoBehaviour {
     public Vector3 FireRay(Vector3 rayDirection) {
         
         Ray ray = new Ray(transform.position, rayDirection);
-        Debug.DrawRay(transform.position, rayDirection * 3, Color.blue);
+        //Debug.DrawRay(transform.position, rayDirection * 3, Color.blue);
         if (Physics.Raycast(ray, out var hitInfo)) {
             var attractor = hitInfo.collider.gameObject.GetComponent<GravityAttractor>();
             if (attractor != null) {
