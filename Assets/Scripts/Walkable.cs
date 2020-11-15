@@ -1,33 +1,18 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SceneManagement;
 using UnityEngine;
-using Object = System.Object;
 
 namespace Test {
 
     [RequireComponent(typeof(MeshFilter))]
     public class Walkable : MonoBehaviour {
         private Mesh _mesh;
-
-        private List<Node> _navPoints = new List<Node>();
+        [SerializeField] private NodeList _nodeList;
 
         [SerializeField] private int subdivide = 0;
         [SerializeField] private float vertexExplode = 1f;
 
         public Transform playerTransform;
-
-        // Start is called before the first frame update
-        void Start() {
-            _mesh = GetComponent<MeshFilter>().mesh;
-            for (int i = 0; i < subdivide; i++) {
-                MeshHelper.Subdivide9(_mesh);
-            }
-            SetupNavPoints();
-            MergeNodes();
-            GenerateFlowField(_navPoints[0].position);
-        }
 
         private void FixedUpdate() {
             if (playerTransform != null) {
@@ -35,13 +20,122 @@ namespace Test {
             }
         }
 
-        public Vector3 GetNearestDirection(Vector3 position) {
-            return GetNearestNode(position).direction;
+        public void BakeNavigation() {
+            _mesh = GetComponent<MeshFilter>().sharedMesh;
+            NodeList.Bake(_mesh, transform, vertexExplode, subdivide);
+        }
+
+        public void DestroyNavigation() {
+            NodeList.AllNodes = new List<Node>();
         }
 
         public Node GetNearestNode(Vector3 position) {
-            Node nearestNode = _navPoints[0];
-            foreach (Node node in _navPoints) {
+            return _nodeList.GetNearestNode(position);
+        }
+
+        void GenerateFlowField(Vector3 targetPosition) {
+            _nodeList.GenerateFlowField(targetPosition);
+        }
+
+        private void OnDrawGizmos() {
+            if (_nodeList?.GetNodes() != null) {
+                
+                foreach (var node in _nodeList.GetNodes()) {
+                    Color color = new Color();
+                    color.r = 0f;
+                    color.b = 0f;
+                    color.g = 1f - (node.value / 7f);
+                    if (color.g < 0) {
+                        color.g = 0f;
+                    }
+
+                    color.a = 1f;
+                    Gizmos.color = color;
+                    Gizmos.DrawSphere(node.position, 0.1f);
+                    Gizmos.DrawLine(node.position, node.position + node.direction);
+                }
+            }
+        }
+    }
+
+    [Serializable]
+    public class NodeList : ISerializationCallbackReceiver {
+        public static List<Node> AllNodes;
+
+        [SerializeField] private List<Node> serializedNodes;
+
+        public static void Bake(Mesh mesh, Transform transform, float vertexExplode, int subdivide) {
+            AllNodes = new List<Node>();
+            if (subdivide > 0) {
+                for (int i = 0; i < subdivide; i++) {
+                    MeshHelper.Subdivide4(mesh);
+                }
+            }
+            SetupNavPoints(mesh, transform, vertexExplode);
+            MergeNodes();
+        }
+
+        static void SetupNavPoints(Mesh mesh, Transform transform, float vertexExplode) {
+            AllNodes = new List<Node>();
+            for (int i = 0; i < mesh.triangles.Length; i += 3) {
+                Vector3 vertex1 = mesh.vertices[mesh.triangles[i]];
+                ScaleVertex(ref vertex1, transform, vertexExplode);
+                Vector3 vertex2 = mesh.vertices[mesh.triangles[i + 1]];
+                ScaleVertex(ref vertex2, transform, vertexExplode);
+                Vector3 vertex3 = mesh.vertices[mesh.triangles[i + 2]];
+                ScaleVertex(ref vertex3, transform, vertexExplode);
+
+                Node node1 = new Node(vertex1);
+                Node node2 = new Node(vertex2, node1);
+                // Creating node3 may look like it does nothing but just by creating it it is added to the all nodes list
+                Node node3 = new Node(vertex3, node1, node2);
+            }
+        }
+
+        static void ScaleVertex(ref Vector3 vertex, Transform transform, float vertexExplode) {
+            Vector3 scale = transform.lossyScale;
+            vertex.x *= scale.x + vertexExplode;
+            vertex.y *= scale.y + vertexExplode;
+            vertex.z *= scale.z + vertexExplode;
+            vertex += transform.position;
+        }
+
+        public static void SetAllUnreachable() {
+            foreach (Node node in AllNodes) {
+                node.value = int.MaxValue;
+            }
+        }
+
+        public static Node GetNode(int id) {
+            return AllNodes.Find(node => node.id == id);
+        }
+        
+        static void MergeNodes() {
+            List<Node> removedNodes = new List<Node>();
+            foreach (Node node in AllNodes) {
+                List<Node> matchingPositions = AllNodes.FindAll(findNode => findNode.position == node.position);
+                foreach (Node matchingNode in matchingPositions) {
+                    if (node == matchingNode) {
+                        continue;
+                    }
+
+                    if (removedNodes.Contains(matchingNode) || removedNodes.Contains(node)) {
+                        continue;
+                    }
+                    
+                    node.Merge(matchingNode);
+                    removedNodes.Add(matchingNode);
+                }
+            }
+
+            foreach (Node node in removedNodes) {
+                AllNodes.Remove(node);
+            }
+        }
+        
+        public Node GetNearestNode(Vector3 position) {
+            Node nearestNode = AllNodes[0];
+            foreach (Node node in AllNodes) {
                 if ((position - node.position).magnitude < (position - nearestNode.position).magnitude) {
                     nearestNode = node;
                     if (position == node.position || VectorsClose(position, node.position)) {
@@ -53,18 +147,22 @@ namespace Test {
             return nearestNode;
         }
 
+        public List<Node> GetNodes() {
+            return AllNodes;
+        }
+
         private bool VectorsClose(Vector3 v1, Vector3 v2) {
             return (v1 - v2).magnitude < 0.3f;
         }
-
-        void GenerateFlowField(Vector3 targetPosition) {
+        
+        public void GenerateFlowField(Vector3 targetPosition) {
             Node targetNode = GetNearestNode(targetPosition);
             if (targetNode == null) {
                 Debug.LogError("Attempted to generate flow field, however no final node of position found");
                 return;
             }
 
-            SetAllNodesUnreachable();
+            SetAllUnreachable();
             targetNode.value = 0;
             targetNode.direction = targetPosition - targetNode.position;
             targetNode.direction.Normalize();
@@ -74,7 +172,8 @@ namespace Test {
             while (open.Count > 0) {
                 currentNode = open[0];
                 open.Remove(currentNode);
-                foreach (Node connectedNode in currentNode.connectedNodes) {
+                foreach (int connectedNodeID in currentNode.connectedNodes) {
+                    Node connectedNode = GetNode(connectedNodeID);
                     int pathLength = currentNode.value + connectedNode.cost;
                     if (pathLength < connectedNode.value) {
                         if (!open.Contains(connectedNode)) {
@@ -86,92 +185,35 @@ namespace Test {
             }
         }
 
-        private void SetAllNodesUnreachable() {
-            foreach (Node navPoint in _navPoints) {
-                navPoint.value = int.MaxValue;
-            }
+        public void OnAfterDeserialize() {
+            AllNodes = serializedNodes;
         }
 
-        void SetupNavPoints() {
-            for (int i = 0; i < _mesh.triangles.Length; i += 3) {
-                Vector3 vertex1 = _mesh.vertices[_mesh.triangles[i]];
-                ScaleVertex(ref vertex1);
-                Vector3 vertex2 = _mesh.vertices[_mesh.triangles[i + 1]];
-                ScaleVertex(ref vertex2);
-                Vector3 vertex3 = _mesh.vertices[_mesh.triangles[i + 2]];
-                ScaleVertex(ref vertex3);
-
-                Node node1 = new Node(vertex1);
-                Node node2 = new Node(vertex2, node1);
-                Node node3 = new Node(vertex3, node1, node2);
-
-                _navPoints.Add(node1);
-                _navPoints.Add(node2);
-                _navPoints.Add(node3);
-            }
-        }
-
-        void ScaleVertex(ref Vector3 vertex) {
-            Transform cacheTransform = transform;
-            Vector3 scale = cacheTransform.lossyScale;
-            vertex.x *= scale.x + vertexExplode;
-            vertex.y *= scale.y + vertexExplode;
-            vertex.z *= scale.z + vertexExplode;
-            vertex += cacheTransform.position;
-        }
-
-        void MergeNodes() {
-            List<Node> removedNodes = new List<Node>();
-            foreach (Node navPoint in _navPoints) {
-                foreach (Node otherNavPoint in _navPoints) {
-                    if (navPoint == otherNavPoint) {
-                        continue;
-                    }
-
-                    if (removedNodes.Contains(navPoint) || removedNodes.Contains(otherNavPoint)) {
-                        continue;
-                    }
-
-                    if (navPoint.position == otherNavPoint.position) {
-                        navPoint.Merge(otherNavPoint);
-                        removedNodes.Add(otherNavPoint);
-                    }
-                }
-            }
-
-            foreach (Node node in removedNodes) {
-                _navPoints.Remove(node);
-            }
-        }
-
-        private void OnDrawGizmos() {
-            foreach (var navPoint in _navPoints) {
-                Color color = new Color();
-                color.r = 0f;
-                color.b = 0f;
-                color.g = 1f - (navPoint.value / 7f);
-                if (color.g < 0) {
-                    color.g = 0f;
-                }
-                color.a = 1f;
-                Gizmos.color = color;
-                Gizmos.DrawSphere(navPoint.position, 0.1f);
-                Gizmos.DrawLine(navPoint.position, navPoint.position + navPoint.direction);
-            }
+        public void OnBeforeSerialize() {
+            serializedNodes = AllNodes;
         }
     }
 
+    [Serializable]
     public class Node {
         public Vector3 position = new Vector3();
-        public List<Node> connectedNodes = new List<Node>();
+        //[NonSerialized] public List<Node> connectedNodes = new List<Node>();
         public int cost = 1;
         public int value = int.MaxValue;
         public Vector3 direction;
 
+        [SerializeField] public int id = 0;
+        private static int creationId = 0;
+        public List<int> connectedNodes = new List<int>();
+      
+
         public Node(Vector3 position = new Vector3(), params Node[] connected) {
             this.position = position;
+            id = creationId;
+            creationId++;
+            NodeList.AllNodes.Add(this);
             foreach (Node node in connected) {
-                ConnectNode(node);
+                ConnectNode(node.id);
             }
         }
 
@@ -179,22 +221,23 @@ namespace Test {
         /// Connects the node to another, creating a two way link, from this node to that, and the other node to this.
         /// </summary>
         /// <param name="node"></param>
-        public void ConnectNode(Node node) {
-            if (node == this) {
+        public void ConnectNode(int nodeID) {
+            Node otherNode = NodeList.GetNode(nodeID);
+            if (otherNode == this) {
                 Debug.LogError("Tried to connect a node to itself");
             }
-            connectedNodes.Add(node);
-            node.connectedNodes.Add(this);
+            connectedNodes.Add(nodeID);
+            otherNode.connectedNodes.Add(id);
         }
 
         /// <summary>
         /// Clears the node from all nodes that it is connected to, and clears its own connected list
         /// </summary>
         public void ClearNodes() {
-            foreach (Node connectedNode in connectedNodes) {
-                connectedNode.connectedNodes.Remove(this);
+            foreach (int connectedNode in connectedNodes) {
+                NodeList.GetNode(connectedNode).connectedNodes.Remove(id);
             }
-            connectedNodes = new List<Node>();
+            connectedNodes = new List<int>();
         }
 
         /// <summary>
@@ -203,15 +246,10 @@ namespace Test {
         /// </summary>
         /// <param name="node">The node to clear, replacing its connections with this node</param>
         public void Merge(Node node) {
-            List<Node> toConnect = new List<Node>();
-            foreach (Node connectedNode in node.connectedNodes) {
-                if (!connectedNodes.Contains(connectedNode)) {
-                    toConnect.Add(connectedNode);
+            foreach (int i in node.connectedNodes) {
+                if (!connectedNodes.Contains(i)) {
+                    ConnectNode(i);
                 }
-            }
-
-            foreach (Node node1 in toConnect) {
-                ConnectNode(node1);
             }
 
             node.ClearNodes();
@@ -222,11 +260,9 @@ namespace Test {
             direction = shortNode.position - position;
             direction.Normalize();
         }
-
     }
 
-    public static class MeshHelper
-{
+    public static class MeshHelper {
     static List<Vector3> vertices;
     static List<Vector3> normals;
     static List<Color> colors;
