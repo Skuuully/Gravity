@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace Test {
@@ -39,20 +40,31 @@ namespace Test {
 
         private void OnDrawGizmos() {
             if (_nodeList?.GetNodes() != null) {
-                
-                foreach (var node in _nodeList.GetNodes()) {
-                    Color color = new Color();
-                    color.r = 0f;
-                    color.b = 0f;
-                    color.g = 1f - (node.value / 7f);
-                    if (color.g < 0) {
-                        color.g = 0f;
+                if (!Application.isPlaying) {
+                    foreach (Node node in _nodeList.GetNodes()) {
+                        foreach (int i in node.connectedNodes) {
+                            Node connected = NodeList.GetNode(i);
+                            Gizmos.color = Color.black;
+                            Gizmos.DrawLine(connected.position, node.position);
+                        }
                     }
+                }
 
-                    color.a = 1f;
-                    Gizmos.color = color;
-                    Gizmos.DrawSphere(node.position, 0.1f);
-                    Gizmos.DrawLine(node.position, node.position + node.direction);
+                foreach (var node in _nodeList.GetNodes()) {
+                    if (node.cost != 255) {
+                        Color color = new Color();
+                        color.r = 0f;
+                        color.b = 0f;
+                        color.g = 1f - (node.value / 7f);
+                        if (color.g < 0) {
+                            color.g = 0f;
+                        }
+
+                        color.a = 1f;
+                        Gizmos.color = color;
+                        Gizmos.DrawSphere(node.position, 0.1f);
+                        Gizmos.DrawLine(node.position, node.position + node.direction);
+                    }
                 }
             }
         }
@@ -86,10 +98,25 @@ namespace Test {
                 ScaleVertex(ref vertex3, transform, vertexExplode);
 
                 Node node1 = new Node(vertex1);
-                Node node2 = new Node(vertex2, node1);
-                // Creating node3 may look like it does nothing but just by creating it it is added to the all nodes list
-                Node node3 = new Node(vertex3, node1, node2);
+                Node node2 = new Node(vertex2);
+                Node node3 = new Node(vertex3);
+                
+                if (VectorsShareTwoPoints(vertex1, vertex2)) {
+                    node1.ConnectNode(node2.id);
+                }
+
+                if (VectorsShareTwoPoints(vertex1, vertex3)) {
+                    node1.ConnectNode(node3.id);
+                }
+
+                if (VectorsShareTwoPoints(vertex2, vertex3)) {
+                    node2.ConnectNode(node3.id);
+                }
             }
+        }
+
+        static bool VectorsShareTwoPoints(Vector3 v1, Vector3 v2) {
+            return (v1.x == v2.x && v1.y == v2.y) || (v1.x == v2.x && v1.z == v2.z) || (v1.y == v2.y && v1.z == v2.z);
         }
 
         static void ScaleVertex(ref Vector3 vertex, Transform transform, float vertexExplode) {
@@ -133,13 +160,15 @@ namespace Test {
             }
         }
         
-        public Node GetNearestNode(Vector3 position) {
+        public Node GetNearestNode(Vector3 position, bool allowInactiveNodes = false) {
             Node nearestNode = AllNodes[0];
             foreach (Node node in AllNodes) {
-                if ((position - node.position).magnitude < (position - nearestNode.position).magnitude) {
-                    nearestNode = node;
-                    if (position == node.position || VectorsClose(position, node.position)) {
-                        break;
+                if (allowInactiveNodes || node.Active()) {
+                    if ((position - node.position).magnitude < (position - nearestNode.position).magnitude) {
+                        nearestNode = node;
+                        if (position == node.position || VectorsClose(position, node.position)) {
+                            break;
+                        }
                     }
                 }
             }
@@ -174,12 +203,15 @@ namespace Test {
                 open.Remove(currentNode);
                 foreach (int connectedNodeID in currentNode.connectedNodes) {
                     Node connectedNode = GetNode(connectedNodeID);
-                    int pathLength = currentNode.value + connectedNode.cost;
-                    if (pathLength < connectedNode.value) {
-                        if (!open.Contains(connectedNode)) {
-                            open.Add(connectedNode);
+                    if (connectedNode.cost != 255) {
+                        int pathLength = currentNode.value + connectedNode.cost;
+                        if (pathLength < connectedNode.value) {
+                            if (!open.Contains(connectedNode)) {
+                                open.Add(connectedNode);
+                            }
+
+                            connectedNode.SetValue(pathLength, currentNode);
                         }
-                        connectedNode.SetValue(pathLength, currentNode);
                     }
                 }
             }
@@ -205,6 +237,8 @@ namespace Test {
         [SerializeField] public int id = 0;
         private static int creationId = 0;
         public List<int> connectedNodes = new List<int>();
+
+        [SerializeField] private static LayerMask collisionLayer = LayerMask.GetMask("PathCollision");
       
 
         public Node(Vector3 position = new Vector3(), params Node[] connected) {
@@ -214,6 +248,11 @@ namespace Test {
             NodeList.AllNodes.Add(this);
             foreach (Node node in connected) {
                 ConnectNode(node.id);
+            }
+
+            Collider[] colliders = Physics.OverlapSphere(position, 0.3f, collisionLayer);
+            if (colliders?.Length > 0) {
+                cost = 255;
             }
         }
 
@@ -259,6 +298,10 @@ namespace Test {
             this.value = value;
             direction = shortNode.position - position;
             direction.Normalize();
+        }
+
+        public bool Active() {
+            return cost != 255;
         }
     }
 
