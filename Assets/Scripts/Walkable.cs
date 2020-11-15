@@ -77,7 +77,10 @@ namespace Test {
         [SerializeField] private List<Node> serializedNodes;
 
         public static void Bake(Mesh mesh, Transform transform, float vertexExplode, int subdivide) {
-            AllNodes = new List<Node>();
+            if (AllNodes == null) {
+                AllNodes = new List<Node>();
+            }
+
             if (subdivide > 0) {
                 for (int i = 0; i < subdivide; i++) {
                     MeshHelper.Subdivide4(mesh);
@@ -88,7 +91,6 @@ namespace Test {
         }
 
         static void SetupNavPoints(Mesh mesh, Transform transform, float vertexExplode) {
-            AllNodes = new List<Node>();
             for (int i = 0; i < mesh.triangles.Length; i += 3) {
                 Vector3 vertex1 = mesh.vertices[mesh.triangles[i]];
                 ScaleVertex(ref vertex1, transform, vertexExplode);
@@ -100,23 +102,22 @@ namespace Test {
                 Node node1 = new Node(vertex1);
                 Node node2 = new Node(vertex2);
                 Node node3 = new Node(vertex3);
-                
-                if (VectorsShareTwoPoints(vertex1, vertex2)) {
+
+                float connection12Length = Math.Abs((vertex1 - vertex2).magnitude);
+                float connection23Length = Math.Abs((vertex2 - vertex3).magnitude);
+                float connection13Length = Math.Abs((vertex1 - vertex3).magnitude);
+
+                if (connection12Length > connection23Length && connection12Length > connection13Length) {
+                    node3.ConnectNode(node1.id);
+                    node3.ConnectNode(node2.id);
+                } else if (connection23Length > connection12Length && connection23Length > connection13Length) {
                     node1.ConnectNode(node2.id);
-                }
-
-                if (VectorsShareTwoPoints(vertex1, vertex3)) {
                     node1.ConnectNode(node3.id);
-                }
-
-                if (VectorsShareTwoPoints(vertex2, vertex3)) {
+                } else if (connection13Length > connection12Length && connection13Length > connection23Length) {
+                    node2.ConnectNode(node1.id);
                     node2.ConnectNode(node3.id);
                 }
             }
-        }
-
-        static bool VectorsShareTwoPoints(Vector3 v1, Vector3 v2) {
-            return (v1.x == v2.x && v1.y == v2.y) || (v1.x == v2.x && v1.z == v2.z) || (v1.y == v2.y && v1.z == v2.z);
         }
 
         static void ScaleVertex(ref Vector3 vertex, Transform transform, float vertexExplode) {
