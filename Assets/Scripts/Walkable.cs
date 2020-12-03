@@ -38,32 +38,33 @@ namespace Test {
             _nodeList.GenerateFlowField(targetPosition);
         }
 
-        private void OnDrawGizmos() {
+        private void OnDrawGizmosSelected() {
             if (_nodeList?.GetNodes() != null) {
                 if (!Application.isPlaying) {
                     foreach (Node node in _nodeList.GetNodes()) {
                         foreach (int i in node.connectedNodes) {
                             Node connected = NodeList.GetNode(i);
-                            Gizmos.color = Color.black;
+                            Gizmos.color = Color.magenta;
                             Gizmos.DrawLine(connected.position, node.position);
+                            Gizmos.DrawSphere(node.position, 0.1f);
                         }
                     }
-                }
+                } else {
+                    foreach (var node in _nodeList.GetNodes()) {
+                        if (node.cost != 255) {
+                            Color color = new Color();
+                            color.r = 0f;
+                            color.b = 0f;
+                            color.g = 1f - (node.value / 7f);
+                            if (color.g < 0) {
+                                color.g = 0f;
+                            }
 
-                foreach (var node in _nodeList.GetNodes()) {
-                    if (node.cost != 255) {
-                        Color color = new Color();
-                        color.r = 0f;
-                        color.b = 0f;
-                        color.g = 1f - (node.value / 7f);
-                        if (color.g < 0) {
-                            color.g = 0f;
+                            color.a = 1f;
+                            Gizmos.color = color;
+                            Gizmos.DrawSphere(node.position, 0.1f);
+                            Gizmos.DrawLine(node.position, node.position + node.direction);
                         }
-
-                        color.a = 1f;
-                        Gizmos.color = color;
-                        Gizmos.DrawSphere(node.position, 0.1f);
-                        Gizmos.DrawLine(node.position, node.position + node.direction);
                     }
                 }
             }
