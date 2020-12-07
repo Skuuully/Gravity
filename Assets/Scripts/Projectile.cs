@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Test;
 using UnityEngine;
@@ -16,6 +17,12 @@ public class Projectile : MonoBehaviour, IDamage {
     // Update is called once per frame
     void FixedUpdate() {
         _rigidbody.velocity = transform.forward * (_forwardsForce * Time.deltaTime);
+    }
+
+    private void OnCollisionEnter(Collision other) {
+        if (other.gameObject.layer == LayerMask.NameToLayer("PathCollision")) {
+            Destroy(gameObject);
+        }
     }
 
     public float GetDamage() {

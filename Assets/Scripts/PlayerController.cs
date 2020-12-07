@@ -11,11 +11,11 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private Weapon weapon;
 
     [SerializeField] private float moveSpeed = 5f;
-    
-    // Start is called before the first frame update
-    void Start() {
+
+    private void Awake() {
         _rigidbody = GetComponent<Rigidbody>();
         _playerInput = GetComponent<PlayerInput>();
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Update() {
@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour {
     private void FixedUpdate() {
         Vector3 movement = new Vector3(_playerInput.X, 0, _playerInput.Y);
         movement.Normalize();
-        _rigidbody.MovePosition(transform.position + (transform.TransformDirection(movement) * moveSpeed * Time.deltaTime));
+        if (movement != Vector3.zero) {
+            _rigidbody.MovePosition(transform.position + (transform.TransformDirection(movement) * moveSpeed * Time.deltaTime));
+        }
     }
 }

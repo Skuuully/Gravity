@@ -2,21 +2,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraFollow : MonoBehaviour {
-    public Transform Target;
+    private Transform _target;
     [SerializeField] private float offset = 10f;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void Awake() {
+        var playerController = FindObjectOfType<PlayerController>();
+        if (playerController != null) {
+            _target = playerController.gameObject.transform;
+        }
+        DontDestroyOnLoad(gameObject);
     }
 
     private void FixedUpdate() {
@@ -25,12 +22,12 @@ public class CameraFollow : MonoBehaviour {
     }
 
     void Follow() {
-        Vector3 targetPosition = Target.position + (offset * Target.up);
+        Vector3 targetPosition = _target.position + (offset * _target.up);
         transform.position = Vector3.Lerp(transform.position, targetPosition, 0.2f);
     }
 
     void Rotate() {
-        Quaternion targetRotation = Quaternion.LookRotation(Target.up * -1f, Target.forward);
+        Quaternion targetRotation = Quaternion.LookRotation(_target.up * -1f, _target.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
     }
 }

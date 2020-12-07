@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 705507994}
+  m_Sun: {fileID: 0}
   m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -75,18 +75,18 @@ LightmapSettings:
     m_BakeBackend: 1
     m_PVRSampling: 1
     m_PVRDirectSampleCount: 32
-    m_PVRSampleCount: 500
+    m_PVRSampleCount: 512
     m_PVRBounces: 2
-    m_PVREnvironmentSampleCount: 500
+    m_PVREnvironmentSampleCount: 256
     m_PVREnvironmentReferencePointCount: 2048
-    m_PVRFilteringMode: 2
-    m_PVRDenoiserTypeDirect: 0
-    m_PVRDenoiserTypeIndirect: 0
-    m_PVRDenoiserTypeAO: 0
+    m_PVRFilteringMode: 1
+    m_PVRDenoiserTypeDirect: 1
+    m_PVRDenoiserTypeIndirect: 1
+    m_PVRDenoiserTypeAO: 1
     m_PVRFilterTypeDirect: 0
     m_PVRFilterTypeIndirect: 0
     m_PVRFilterTypeAO: 0
-    m_PVREnvironmentMIS: 0
+    m_PVREnvironmentMIS: 1
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 2146881383}
+  m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -108,8 +108,8 @@ NavMeshSettings:
     agentTypeID: 0
     agentRadius: 0.5
     agentHeight: 2
-    agentSlope: 60
-    agentClimb: 1
+    agentSlope: 45
+    agentClimb: 0.4
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
@@ -122,8 +122,8 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 5967c11aa2b60464aaf744724526be20, type: 2}
---- !u!1 &25987823
+  m_NavMeshData: {fileID: 0}
+--- !u!1 &27614365
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,341 +131,99 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 25987826}
-  - component: {fileID: 25987825}
-  - component: {fileID: 25987824}
+  - component: {fileID: 27614366}
+  - component: {fileID: 27614367}
   m_Layer: 0
-  m_Name: EventSystem
+  m_Name: PlayerSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &25987824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 25987823}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
---- !u!114 &25987825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 25987823}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
---- !u!4 &25987826
+--- !u!4 &27614366
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 25987823}
+  m_GameObject: {fileID: 27614365}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 997548419}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &108377857
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 108377859}
-  - component: {fileID: 108377858}
-  m_Layer: 0
-  m_Name: Directional Light (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!108 &108377858
-Light:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 108377857}
-  m_Enabled: 1
-  serializedVersion: 10
-  m_Type: 1
-  m_Shape: 0
-  m_Color: {r: 0.4812656, g: 0.6607064, b: 0.990566, a: 1}
-  m_Intensity: 1
-  m_Range: 10
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 2
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-    m_CullingMatrixOverride:
-      e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingLayerMask: 1
-  m_Lightmapping: 1
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_UseBoundingSphereOverride: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
---- !u!4 &108377859
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 108377857}
-  m_LocalRotation: {x: -0, y: 0.9659258, z: -0, w: 0.2588191}
-  m_LocalPosition: {x: -11.443302, y: 4.7886887, z: -11.28545}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1487751683}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 150, z: 0}
---- !u!1 &201239033 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2384744734786599495, guid: 6442b0c65d884194e9208fd16283712f, type: 3}
-  m_PrefabInstance: {fileID: 2384744735309291333}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &201239043
+--- !u!114 &27614367
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 201239033}
+  m_GameObject: {fileID: 27614365}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4efa07b92400b364a8c43150074fe01c, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c200a19defd8fb43b30fc7e2f96c91c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &364184156
-GameObject:
+--- !u!1001 &252542144
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 364184164}
-  - component: {fileID: 364184163}
-  - component: {fileID: 364184162}
-  - component: {fileID: 364184161}
-  - component: {fileID: 364184160}
-  - component: {fileID: 364184159}
-  - component: {fileID: 364184158}
-  - component: {fileID: 364184157}
-  m_Layer: 9
-  m_Name: Agent (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &364184157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 364184156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30afb88281fb9a44b95352bd00601efe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EditorCurrentHealth: 1
-  EditorMaxHealth: 1
---- !u!114 &364184158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 364184156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d888189b24e069b4eba564a0271a2c84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pathFindingGrid: {fileID: 0}
-  speed: 400
---- !u!114 &364184159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 364184156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86de5f4ec6d66164bab39b3a1d6d94b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  localGravityStrength: 1
---- !u!54 &364184160
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 364184156}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!136 &364184161
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 364184156}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &364184162
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 364184156}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &364184163
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 364184156}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &364184164
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 364184156}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 1, z: -6}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!223 &478825797 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 1738608621128088, guid: ddcb1cc4f3947a24c86a9e896c29169c, type: 3}
-  m_PrefabInstance: {fileID: 1034210660}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &552068360 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2384744734786599501, guid: 6442b0c65d884194e9208fd16283712f, type: 3}
-  m_PrefabInstance: {fileID: 2384744735309291333}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &555792076
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2586653886986574281, guid: 834ee290594f44245b92432fe71bef11, type: 3}
+      propertyPath: m_Name
+      value: Agent (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2586653886986574326, guid: 834ee290594f44245b92432fe71bef11, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2586653886986574326, guid: 834ee290594f44245b92432fe71bef11, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2586653886986574326, guid: 834ee290594f44245b92432fe71bef11, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2586653886986574326, guid: 834ee290594f44245b92432fe71bef11, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2586653886986574326, guid: 834ee290594f44245b92432fe71bef11, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2586653886986574326, guid: 834ee290594f44245b92432fe71bef11, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2586653886986574326, guid: 834ee290594f44245b92432fe71bef11, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2586653886986574326, guid: 834ee290594f44245b92432fe71bef11, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2586653886986574326, guid: 834ee290594f44245b92432fe71bef11, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2586653886986574326, guid: 834ee290594f44245b92432fe71bef11, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2586653886986574326, guid: 834ee290594f44245b92432fe71bef11, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 834ee290594f44245b92432fe71bef11, type: 3}
+--- !u!1 &997548414
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -473,119 +231,27 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 555792081}
-  - component: {fileID: 555792080}
-  - component: {fileID: 555792079}
-  - component: {fileID: 555792078}
-  - component: {fileID: 555792077}
-  - component: {fileID: 555792082}
-  - component: {fileID: 555792083}
+  - component: {fileID: 997548419}
+  - component: {fileID: 997548418}
+  - component: {fileID: 997548417}
+  - component: {fileID: 997548416}
+  - component: {fileID: 997548415}
+  - component: {fileID: 997548421}
+  - component: {fileID: 997548420}
   m_Layer: 0
-  m_Name: SpherePlanet
+  m_Name: CubePlanet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &555792077
+--- !u!114 &997548415
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 555792076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce8a3ef198540254d9cfd331decb82b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Gravity: 400
---- !u!135 &555792078
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 555792076}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &555792079
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 555792076}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &555792080
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 555792076}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &555792081
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 555792076}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0000009536743, y: -1.02, z: -0.88}
-  m_LocalScale: {x: 10, y: 10, z: 10}
-  m_Children:
-  - {fileID: 1953828536}
-  - {fileID: 1242634656}
-  - {fileID: 810428260}
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &555792082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 555792076}
+  m_GameObject: {fileID: 997548414}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efb28b17976af304184342f7cbf2c7ba, type: 3}
@@ -597,2702 +263,2702 @@ MonoBehaviour:
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 0
       connectedNodes: 02000000030000000a0000000d000000
     - position: {x: 1.1087404, y: -6.3905563, z: -0.8800001}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1
       connectedNodes: 0200000014000000150000000d000000
     - position: {x: 1.0862758, y: -6.2842627, z: -1.9662768}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2
       connectedNodes: 00000000010000001a0000001d000000
     - position: {x: 2.0233705, y: -5.6980615, z: -2.9033713}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 3
       connectedNodes: 00000000060000001a00000024000000
     - position: {x: 2.9007926, y: -5.2576046, z: -2.803657}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 6
       connectedNodes: 030000000a000000210000002a000000
     - position: {x: 3.0304506, y: -5.4813914, z: -1.8723364}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 10
       connectedNodes: 00000000060000003d00000043000000
     - position: {x: 2.1516593, y: -6.0641017, z: -0.87999976}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 13
       connectedNodes: 00000000010000005a00000043000000
     - position: {x: -0.0000009536743, y: -6.52, z: -0.88}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 20
       connectedNodes: 01000000e40000001d0000009d000000
     - position: {x: 1.0862758, y: -6.2842627, z: 0.20627677}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 21
       connectedNodes: 01000000f80000005a000000e4000000
     - position: {x: 1.039581, y: -5.9729, z: -2.9919944}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 26
       connectedNodes: 0200000003000000650000004d000000
     - position: {x: -0.0000010837553, y: -6.3905563, z: -1.9887414}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 29
       connectedNodes: 02000000140000008c00000065000000
     - position: {x: 2.7335367, y: -4.9094505, z: -3.6135378}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 33
       connectedNodes: 0600000038000000240000002d000000
     - position: {x: 1.9236562, y: -5.2576046, z: -3.7807937}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 36
       connectedNodes: 0300000021000000410000004d000000
     - position: {x: 3.644823, y: -4.664824, z: -2.7515574}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 42
       connectedNodes: 060000002d0000003d0000006d030000
     - position: {x: 3.3979142, y: -4.4179153, z: -3.5221214}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 45
       connectedNodes: 2a000000210000003300000094030000
     - position: {x: 3.1660976, y: -4.1860986, z: -4.0460987}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 51
       connectedNodes: 2d000000380000009a030000
     - position: {x: 2.6421206, y: -4.4179153, z: -4.277915}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 56
       connectedNodes: 21000000330000004100000084070000
     - position: {x: 3.8166714, y: -4.8366723, z: -1.8486633}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 61
       connectedNodes: 0a0000002a000000460000004c030000
     - position: {x: 1.8715565, y: -4.664824, z: -4.524824}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 65
       connectedNodes: 2400000038000000530000008d070000
     - position: {x: 3.0817447, y: -5.555996, z: -0.8799996}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 67
       connectedNodes: 0a000000460000000d00000054000000
     - position: {x: 3.8776603, y: -4.897661, z: -0.8799996}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 70
       connectedNodes: 3d000000430000005900000031030000
     - position: {x: 0.99233544, y: -5.4813914, z: -3.9104514}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 77
       connectedNodes: 240000001a000000530000006b000000
     - position: {x: 0.9686623, y: -4.8366723, z: -4.6966724}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 83
       connectedNodes: 410000004d000000710000009c070000
     - position: {x: 3.0304506, y: -5.4813914, z: 0.1123364}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 84
       connectedNodes: 4300000059000000720000005a000000
     - position: {x: 3.8166714, y: -4.8366723, z: 0.08866328}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 89
       connectedNodes: 4600000054000000770000001c030000
     - position: {x: 2.1119936, y: -5.9729, z: 0.1595819}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 90
       connectedNodes: 0d000000540000001500000078000000
     - position: {x: -0.0000013837821, y: -6.0641017, z: -3.03166}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 101
       connectedNodes: 1a0000001d000000860000006b000000
     - position: {x: -0.0000011529916, y: -5.555996, z: -3.9617457}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 107
       connectedNodes: 4d000000650000007100000080000000
     - position: {x: -0.0000015411351, y: -4.897661, z: -4.7576613}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 113
       connectedNodes: 530000006b00000083000000b1070000
     - position: {x: 2.9007926, y: -5.2576046, z: 1.0436572}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 114
       connectedNodes: 54000000770000009000000078000000
     - position: {x: 3.644823, y: -4.664824, z: 0.9915575}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 119
       connectedNodes: 5900000072000000950000000d030000
     - position: {x: 2.0233705, y: -5.6980615, z: 1.1433715}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 120
       connectedNodes: 5a0000007200000010010000f8000000
     - position: {x: -0.99233735, y: -5.4813914, z: -3.9104514}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 128
       connectedNodes: 6b000000830000009800000086000000
     - position: {x: -0.9686642, y: -4.8366723, z: -4.6966724}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 131
       connectedNodes: 71000000800000009b000000cc070000
     - position: {x: -1.0395828, y: -5.9729, z: -2.9919944}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 134
       connectedNodes: 6500000080000000b00000008c000000
     - position: {x: -1.0862777, y: -6.2842627, z: -1.9662768}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 140
       connectedNodes: 1d000000860000009d000000a7000000
     - position: {x: 2.7335367, y: -4.9094505, z: 1.8535377}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 144
       connectedNodes: 72000000950000002e01000010010000
     - position: {x: 3.3979142, y: -4.4179153, z: 1.7621216}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 149
       connectedNodes: 77000000900000003401000004030000
     - position: {x: -1.9236581, y: -5.2576046, z: -3.7807937}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 152
       connectedNodes: 800000009b000000d1000000b0000000
     - position: {x: -1.8715584, y: -4.664824, z: -4.524824}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 155
       connectedNodes: 8300000098000000dd000000ed070000
     - position: {x: -1.108749, y: -6.3905563, z: -0.88}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 157
       connectedNodes: 8c00000014000000a4000000e7000000
     - position: {x: -2.1516612, y: -6.0641017, z: -0.88}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 164
       connectedNodes: 9d000000a7000000ad0000005d010000
     - position: {x: -2.1119955, y: -5.9729, z: -1.9195819}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 167
       connectedNodes: 8c000000a4000000b9000000b0000000
     - position: {x: -3.0817466, y: -5.555996, z: -0.87999976}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 173
       connectedNodes: a4000000b9000000bf00000063010000
     - position: {x: -2.0233724, y: -5.6980615, z: -2.9033713}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 176
       connectedNodes: 86000000a700000098000000c5000000
     - position: {x: -3.0304525, y: -5.4813914, z: -1.8723364}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 185
       connectedNodes: a7000000ad000000c2000000c5000000
     - position: {x: -3.8776622, y: -4.897661, z: -0.88}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 191
       connectedNodes: ad000000c20000000106000069010000
     - position: {x: -3.8166733, y: -4.8366723, z: -1.8486633}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 194
       connectedNodes: b9000000bf000000ce000000dc060000
     - position: {x: -2.9007945, y: -5.2576046, z: -2.803657}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 197
       connectedNodes: b0000000b9000000ce000000d1000000
     - position: {x: -3.644825, y: -4.664824, z: -2.7515574}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 206
       connectedNodes: c2000000c5000000da000000cd060000
     - position: {x: -2.7335386, y: -4.9094505, z: -3.6135378}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 209
       connectedNodes: 98000000c5000000da000000dd000000
     - position: {x: -3.397916, y: -4.4179153, z: -3.5221214}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 218
       connectedNodes: ce000000d1000000e3000000c4060000
     - position: {x: -2.6421225, y: -4.4179153, z: -4.277915}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 221
       connectedNodes: 9b000000d1000000e300000014080000
     - position: {x: -3.1660995, y: -4.1860986, z: -4.0460987}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 227
       connectedNodes: da000000dd000000c1060000
     - position: {x: -0.0000011886602, y: -6.3905563, z: 0.2287414}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 228
       connectedNodes: 14000000e7000000ef00000015000000
     - position: {x: -1.0862777, y: -6.2842627, z: 0.20627677}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 231
       connectedNodes: e4000000ea0000005d0100009d000000
     - position: {x: -1.0395828, y: -5.9729, z: 1.2319945}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 234
       connectedNodes: e7000000ef000000080100004b010000
     - position: {x: -0.0000011739737, y: -6.0641017, z: 1.2716602}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 239
       connectedNodes: e4000000ea000000f8000000ff000000
     - position: {x: 1.039581, y: -5.9729, z: 1.2319945}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 248
       connectedNodes: 15000000ef0000007800000002010000
     - position: {x: -0.0000004291535, y: -5.555996, z: 2.2017455}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 255
       connectedNodes: ef000000170100000201000008010000
     - position: {x: 0.99233544, y: -5.4813914, z: 2.1504517}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 258
       connectedNodes: f8000000ff0000001001000022010000
     - position: {x: -0.99233735, y: -5.4813914, z: 2.1504517}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 264
       connectedNodes: ea000000ff000000390100001a010000
     - position: {x: 1.9236562, y: -5.2576046, z: 2.0207934}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 272
       connectedNodes: 78000000020100009000000028010000
     - position: {x: -0.0000003242493, y: -4.897661, z: 2.997661}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 279
       connectedNodes: ff0000001a01000022010000b1040000
     - position: {x: -0.9686642, y: -4.8366723, z: 2.9366722}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 282
       connectedNodes: 1701000008010000350100009c040000
     - position: {x: 0.9686623, y: -4.8366723, z: 2.9366722}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 290
       connectedNodes: 020100001701000028010000cc040000
     - position: {x: 1.8715565, y: -4.664824, z: 2.764824}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 296
       connectedNodes: 10010000220100002e010000ed040000
     - position: {x: 2.6421206, y: -4.4179153, z: 2.5179152}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 302
       connectedNodes: 90000000280100003401000014050000
     - position: {x: 3.1660976, y: -4.1860986, z: 2.2860985}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 308
       connectedNodes: 950000002e01000001030000
     - position: {x: -1.8715584, y: -4.664824, z: 2.764824}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 309
       connectedNodes: 1a010000390100003b0100008d040000
     - position: {x: -1.9236581, y: -5.2576046, z: 2.0207934}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 313
       connectedNodes: 0801000035010000420100004b010000
     - position: {x: -2.6421225, y: -4.4179153, z: 2.5179152}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 315
       connectedNodes: 35010000420100004401000084040000
     - position: {x: -2.7335386, y: -4.9094505, z: 1.8535377}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 322
       connectedNodes: 390100003b0100004801000054010000
     - position: {x: -3.1660995, y: -4.1860986, z: 2.2860985}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 324
       connectedNodes: 3b0100004801000081040000
     - position: {x: -3.397916, y: -4.4179153, z: 1.7621216}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 328
       connectedNodes: 42010000440100005a0100001c060000
     - position: {x: -2.0233724, y: -5.6980615, z: 1.1433715}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 331
       connectedNodes: ea000000390100005d01000054010000
     - position: {x: -2.9007945, y: -5.2576046, z: 1.0436572}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 340
       connectedNodes: 420100004b0100005a01000063010000
     - position: {x: -3.644825, y: -4.664824, z: 0.9915575}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 346
       connectedNodes: 4801000054010000690100000d060000
     - position: {x: -2.1119955, y: -5.9729, z: 0.1595819}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 349
       connectedNodes: e70000004b010000a400000063010000
     - position: {x: -3.0304525, y: -5.4813914, z: 0.1123364}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 355
       connectedNodes: 540100005d01000069010000ad000000
     - position: {x: -3.8166733, y: -4.8366723, z: 0.08866328}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 361
       connectedNodes: 5a01000063010000bf00000004060000
     - position: {x: 1.0899618, y: 4.251191, z: -1.9699627}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 384
       connectedNodes: 81010000830100008b0100008e010000
     - position: {x: -0.0000014388561, y: 4.3574314, z: -1.9924945}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 385
       connectedNodes: 800100008201000093010000ec020000
     - position: {x: -0.0000009012671, y: 4.48, z: -0.88000005}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 386
       connectedNodes: 810100008e010000560200009f020000
     - position: {x: 1.0430318, y: 3.9389162, z: -2.9989905}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 387
       connectedNodes: 80010000860100009301000098010000
     - position: {x: 2.0302322, y: 3.6635938, z: -2.910233}
       cost: 255
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 390
       connectedNodes: 830100008b010000950100009e010000
     - position: {x: 2.1189895, y: 3.9389162, z: -1.9230328}
       cost: 255
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 395
       connectedNodes: 8001000086010000df010000ca010000
     - position: {x: 1.1125003, y: 4.3574314, z: -0.88000035}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 398
       connectedNodes: 800100008201000000020000df010000
     - position: {x: -0.0000018978119, y: 4.030117, z: -3.039032}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 403
       connectedNodes: 8101000083010000d7010000c0010000
     - position: {x: 1.9300209, y: 3.2220092, z: -3.791079}
       cost: 255
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 405
       connectedNodes: 86010000a1010000a701000098010000
     - position: {x: 0.9957125, y: 3.4468699, z: -3.9212208}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 408
       connectedNodes: 8301000095010000ba010000c0010000
     - position: {x: 2.911078, y: 3.2220092, z: -2.8100219}
       cost: 255
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 414
       connectedNodes: 86010000be010000ca010000a1010000
     - position: {x: 2.7415934, y: 2.8724582, z: -3.6215944}
       cost: 255
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 417
       connectedNodes: 950100009e010000b5010000aa010000
     - position: {x: 1.8778408, y: 2.627268, z: -4.5372043}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 423
       connectedNodes: 95010000aa010000ba01000096080000
     - position: {x: 2.6499624, y: 2.379983, z: -4.2894626}
       cost: 255
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 426
       connectedNodes: a7010000a1010000b001000088080000
     - position: {x: 3.1771889, y: 2.1469042, z: -4.05719}
       cost: 255
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 432
       connectedNodes: aa010000b501000079040000
     - position: {x: 3.4094617, y: 2.379983, z: -3.5299635}
       cost: 255
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 437
       connectedNodes: a1010000b0010000be0100006d040000
     - position: {x: 0.97189844, y: 2.7994921, z: -4.7094016}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 442
       connectedNodes: 98010000a7010000c6010000a2080000
     - position: {x: 3.6572034, y: 2.627268, z: -2.7578416}
       cost: 255
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 446
       connectedNodes: 9e010000b5010000d001000058040000
     - position: {x: -0.0000023174284, y: 3.5214744, z: -3.9726486}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 448
       connectedNodes: 9801000093010000c6010000d1010000
     - position: {x: -0.0000026845933, y: 2.8606691, z: -4.7706056}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 454
       connectedNodes: ba010000c0010000d6010000b4080000
     - position: {x: 3.0412197, y: 3.4468699, z: -1.8757135}
       cost: 255
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 458
       connectedNodes: 9e0100008b010000d0010000e5010000
     - position: {x: 3.8294008, y: 2.7994921, z: -1.8518994}
       cost: 255
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 464
       connectedNodes: be010000ca010000eb01000046040000
     - position: {x: -0.9957077, y: 3.4468699, z: -3.9212208}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 465
       connectedNodes: c0010000d6010000ec010000d7010000
     - position: {x: -0.97190034, y: 2.7994921, z: -4.7094016}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 470
       connectedNodes: c6010000d1010000f1010000c6080000
     - position: {x: -1.0430337, y: 3.9389162, z: -2.9989905}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 471
       connectedNodes: 93010000d1010000ec020000cb020000
     - position: {x: 2.1590312, y: 4.030117, z: -0.88000065}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 479
       connectedNodes: 8b0100008e010000fa010000e5010000
     - position: {x: 3.0926478, y: 3.5214744, z: -0.880001}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 485
       connectedNodes: ca010000df010000eb010000f4010000
     - position: {x: 3.8906045, y: 2.8606691, z: -0.88000125}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 491
       connectedNodes: d0010000e5010000f701000034040000
     - position: {x: -1.9300228, y: 3.2220092, z: -3.791079}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 492
       connectedNodes: d1010000f1010000cb020000b6020000
     - position: {x: -1.8778427, y: 2.627268, z: -4.5372043}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 497
       connectedNodes: d6010000ec010000b3020000d8080000
     - position: {x: 3.0412197, y: 3.4468699, z: 0.11571348}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 500
       connectedNodes: e5010000f701000006020000fa010000
     - position: {x: 3.8294008, y: 2.7994921, z: 0.091899395}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 503
       connectedNodes: eb010000f40100000902000022040000
     - position: {x: 2.1189895, y: 3.9389162, z: 0.16303277}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 506
       connectedNodes: df010000f40100000c02000000020000
     - position: {x: 1.0899618, y: 4.251191, z: 0.20996273}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 512
       connectedNodes: 8e010000fa0100005602000035020000
     - position: {x: 2.911078, y: 3.2220092, z: 1.0500219}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 518
       connectedNodes: f401000009020000120200000c020000
     - position: {x: 3.6572034, y: 2.627268, z: 0.9978417}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 521
       connectedNodes: f7010000060200001502000016040000
     - position: {x: 2.0302322, y: 3.6635938, z: 1.1502331}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 524
       connectedNodes: fa010000060200003502000020020000
     - position: {x: 2.7415934, y: 2.8724582, z: 1.8615943}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 530
       connectedNodes: 06020000150200001802000020020000
     - position: {x: 3.4094617, y: 2.379983, z: 1.7699634}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 533
       connectedNodes: 09020000120200001b02000008040000
     - position: {x: 2.6499624, y: 2.379983, z: 2.5294628}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 536
       connectedNodes: 120200001b0200001d020000ed050000
     - position: {x: 3.1771889, y: 2.1469042, z: 2.2971897}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 539
       connectedNodes: 150200001802000075030000
     - position: {x: 1.8778408, y: 2.627268, z: 2.7772045}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 541
       connectedNodes: 180200002902000020020000d8050000
     - position: {x: 1.9300209, y: 3.2220092, z: 2.0310788}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 544
       connectedNodes: 120200001d0200000c0200002c020000
     - position: {x: 0.97189844, y: 2.7994921, z: 2.9494019}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 553
       connectedNodes: 1d0200002c02000032020000c6050000
     - position: {x: 0.9957125, y: 3.4468699, z: 2.1612206}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 556
       connectedNodes: 20020000290200003e02000035020000
     - position: {x: -0.0000003242493, y: 2.8606691, z: 3.0106053}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 562
       connectedNodes: 290200003e02000043020000b4050000
     - position: {x: 1.0430318, y: 3.9389162, z: 1.2389904}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 565
       connectedNodes: 0c0200002c0200000002000047020000
     - position: {x: -0.0000004291535, y: 3.5214744, z: 2.2126489}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 574
       connectedNodes: 2c020000320200004e02000047020000
     - position: {x: -0.97190034, y: 2.7994921, z: 2.9494019}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 579
       connectedNodes: 320200004e02000052020000a2050000
     - position: {x: -0.0000006127358, y: 4.030117, z: 1.2790321}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 583
       connectedNodes: 350200003e0200005602000066020000
     - position: {x: -0.9957144, y: 3.4468699, z: 2.1612206}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 590
       connectedNodes: 3e020000430200006002000066020000
     - position: {x: -1.8778427, y: 2.627268, z: 2.7772045}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 594
       connectedNodes: 43020000600200006102000096050000
     - position: {x: -0.00000078320505, y: 4.3574314, z: 0.23249447}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 598
       connectedNodes: 00020000470200008201000078020000
     - position: {x: -1.9300228, y: 3.2220092, z: 2.0310788}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 608
       connectedNodes: 4e020000520200006f0200007e020000
     - position: {x: -2.6499643, y: 2.379983, z: 2.5294628}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 609
       connectedNodes: 520200006f0200007002000088050000
     - position: {x: -1.0430337, y: 3.9389162, z: 1.2389904}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 614
       connectedNodes: 470200004e020000780200007e020000
     - position: {x: -2.7415953, y: 2.8724582, z: 1.8615943}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 623
       connectedNodes: 60020000610200007502000087020000
     - position: {x: -3.1771908, y: 2.1469042, z: 2.2971897}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 624
       connectedNodes: 6102000075020000f5040000
     - position: {x: -3.4094636, y: 2.379983, z: 1.7699634}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 629
       connectedNodes: 6f020000700200008d020000ab060000
     - position: {x: -1.0899637, y: 4.251191, z: 0.20996273}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 632
       connectedNodes: 5602000066020000900200009f020000
     - position: {x: -2.030234, y: 3.6635938, z: 1.1502331}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 638
       connectedNodes: 60020000660200009002000087020000
     - position: {x: -2.91108, y: 3.2220092, z: 1.0500219}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 647
       connectedNodes: 6f0200007e0200008d02000096020000
     - position: {x: -3.6572053, y: 2.627268, z: 0.9978417}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 653
       connectedNodes: 75020000870200009c020000a1060000
     - position: {x: -2.1189914, y: 3.9389162, z: 0.16303277}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 656
       connectedNodes: 780200007e020000a502000096020000
     - position: {x: -3.0412216, y: 3.4468699, z: 0.11571348}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 662
       connectedNodes: 87020000900200009c020000ab020000
     - position: {x: -3.8294027, y: 2.7994921, z: 0.091899395}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 668
       connectedNodes: 8d02000096020000b102000086060000
     - position: {x: -1.1124954, y: 4.3574314, z: -0.88}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 671
       connectedNodes: 7802000082010000a5020000ec020000
     - position: {x: -2.159033, y: 4.030117, z: -0.88}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 677
       connectedNodes: 900200009f020000ab020000e0020000
     - position: {x: -3.0926497, y: 3.5214744, z: -0.88}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 683
       connectedNodes: 96020000a5020000b1020000d4020000
     - position: {x: -3.8906064, y: 2.8606691, z: -0.88}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 689
       connectedNodes: 9c020000ab020000c70200006f060000
     - position: {x: -3.4094636, y: 2.379983, z: -3.5299635}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 690
       connectedNodes: b4020000b6020000bb02000046070000
     - position: {x: -2.6499643, y: 2.379983, z: -4.2894626}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 691
       connectedNodes: b4020000b6020000f1010000ed080000
     - position: {x: -3.1771908, y: 2.1469042, z: -4.05719}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 692
       connectedNodes: b2020000b30200002f070000
     - position: {x: -2.7415953, y: 2.8724582, z: -3.6215944}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 694
       connectedNodes: b2020000b3020000ec010000c2020000
     - position: {x: -3.6572053, y: 2.627268, z: -2.7578416}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 699
       connectedNodes: b2020000c2020000c702000061070000
     - position: {x: -2.91108, y: 3.2220092, z: -2.8100219}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 706
       connectedNodes: b6020000bb020000cb020000d4020000
     - position: {x: -3.8294027, y: 2.7994921, z: -1.8518994}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 711
       connectedNodes: bb020000d4020000b10200006b070000
     - position: {x: -2.030234, y: 3.6635938, z: -2.910233}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 715
       connectedNodes: ec010000c2020000d7010000e0020000
     - position: {x: -3.0412216, y: 3.4468699, z: -1.8757135}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 724
       connectedNodes: c2020000c7020000ab020000e0020000
     - position: {x: -2.1189914, y: 3.9389162, z: -1.9230328}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 736
       connectedNodes: cb020000d4020000a5020000ec020000
     - position: {x: -1.0899637, y: 4.251191, z: -1.9699627}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 748
       connectedNodes: d7010000e00200009f02000081010000
     - position: {x: 3.3979142, y: -3.6621215, z: 2.5179152}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 769
       connectedNodes: 34010000040300000a03000014050000
     - position: {x: 3.8894496, y: -3.7535377, z: 1.8535377}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 772
       connectedNodes: 95000000010300000d03000013030000
     - position: {x: 3.644823, y: -2.8915575, z: 2.764824}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 778
       connectedNodes: 01030000130300001903000023050000
     - position: {x: 4.2376037, y: -3.9207935, z: 1.0436572}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 781
       connectedNodes: 77000000040300001c03000028030000
     - position: {x: 4.2376037, y: -2.9436707, z: 2.0207934}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 787
       connectedNodes: 040300000a0300002203000028030000
     - position: {x: 3.8166714, y: -1.9886632, z: 2.9366722}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 793
       connectedNodes: 0a03000022030000250300003e050000
     - position: {x: 4.4613905, y: -4.0504513, z: 0.1123364}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 796
       connectedNodes: 590000000d0300003103000043030000
     - position: {x: 4.4613905, y: -2.0123363, z: 2.1504517}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 802
       connectedNodes: 1303000019030000370300003d030000
     - position: {x: 3.8890738, y: -1.02, z: 3.0090747}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 805
       connectedNodes: 19030000370300003903000053050000
     - position: {x: 4.6780605, y: -3.0433714, z: 1.1433715}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 808
       connectedNodes: 0d030000130300003d03000043030000
     - position: {x: 4.535995, y: -4.1017456, z: -0.8800004}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 817
       connectedNodes: 460000001c0300004c03000058030000
     - position: {x: 4.5730824, y: -1.02, z: 2.175642}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 823
       connectedNodes: 2203000025030000530300005e030000
     - position: {x: 3.8294008, y: -0.057426155, z: 2.9494019}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 825
       connectedNodes: 2503000053030000540300006d050000
     - position: {x: 4.952899, y: -2.0595818, z: 1.2319945}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 829
       connectedNodes: 22030000280300005e03000064030000
     - position: {x: 4.952899, y: -3.1319945, z: 0.1595819}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 835
       connectedNodes: 1c030000280300005803000064030000
     - position: {x: 4.4613905, y: -4.0504513, z: -1.8723364}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 844
       connectedNodes: 3d000000310300006d03000079030000
     - position: {x: 4.4766445, y: -0.033551574, z: 2.1612206}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 851
       connectedNodes: 3703000039030000740300008c030000
     - position: {x: 3.6572034, y: 0.8488184, z: 2.7772045}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 852
       connectedNodes: 390300007403000075030000e1050000
     - position: {x: 5.0441008, y: -3.1716602, z: -0.8800008}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 856
       connectedNodes: 3103000043030000790300007f030000
     - position: {x: 5.081322, y: -1.02, z: 1.2247571}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 862
       connectedNodes: 370300003d030000850300008c030000
     - position: {x: 5.2642617, y: -2.1062768, z: 0.20627677}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 868
       connectedNodes: 3d030000430300007f03000085030000
     - position: {x: 4.2376037, y: -3.9207935, z: -2.803657}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 877
       connectedNodes: 2a0000004c030000940300009d030000
     - position: {x: 4.251596, y: 0.9011731, z: 2.0310788}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 884
       connectedNodes: 530300005403000008040000e7030000
     - position: {x: 3.4094617, y: 1.6219068, z: 2.5294628}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 885
       connectedNodes: 540300001b02000008040000ed050000
     - position: {x: 4.952899, y: -3.1319945, z: -1.9195819}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 889
       connectedNodes: 4c030000580300009d030000ac030000
     - position: {x: 5.3705554, y: -2.128748, z: -0.8800004}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 895
       connectedNodes: 5803000064030000ac030000b2030000
     - position: {x: 5.394296, y: -1.02, z: 0.19299674}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 901
       connectedNodes: 5e03000064030000b2030000b9030000
     - position: {x: 4.967079, y: 0.013808012, z: 1.2389904}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 908
       connectedNodes: 530300005e030000b9030000e7030000
     - position: {x: 3.8894496, y: -3.7535377, z: -3.6135378}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 916
       connectedNodes: 2d0000006d0300009a030000a3030000
     - position: {x: 3.3979142, y: -3.6621215, z: -4.277915}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 922
       connectedNodes: 3300000094030000a903000084070000
     - position: {x: 4.6780605, y: -3.0433714, z: -2.9033713}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 925
       connectedNodes: 6d03000079030000c4030000a3030000
     - position: {x: 4.2376037, y: -2.9436707, z: -3.7807937}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 931
       connectedNodes: 940300009d030000a9030000be030000
     - position: {x: 3.644823, y: -2.8915575, z: -4.524824}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 937
       connectedNodes: 9a030000a3030000c103000093070000
     - position: {x: 5.2642617, y: -2.1062768, z: -1.9662768}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 940
       connectedNodes: 790300007f030000cd030000c4030000
     - position: {x: 5.499999, y: -1.02, z: -0.8800018}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 946
       connectedNodes: 7f03000085030000cd030000e1030000
     - position: {x: 5.2795153, y: 0.06061697, z: 0.20996273}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 953
       connectedNodes: 850300008c03000002040000e1030000
     - position: {x: 4.4613905, y: -2.0123363, z: -3.9104514}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 958
       connectedNodes: a3030000c1030000d3030000c4030000
     - position: {x: 3.8166714, y: -1.9886632, z: -4.6966724}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 961
       connectedNodes: a9030000be030000d6030000a2070000
     - position: {x: 4.952899, y: -2.0595818, z: -2.9919944}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 964
       connectedNodes: 9d030000ac030000be030000d9030000
     - position: {x: 5.3862395, y: -1.0297202, z: -1.9924945}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 973
       connectedNodes: ac030000b2030000f9030000d9030000
     - position: {x: 4.551222, y: -1.0297201, z: -3.9726486}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 979
       connectedNodes: be030000d6030000ed030000d9030000
     - position: {x: 3.8906045, y: -1.0297201, z: -4.7706056}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 982
       connectedNodes: c1030000d3030000f2030000b7070000
     - position: {x: 5.05828, y: -1.0297201, z: -3.039032}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 985
       connectedNodes: c4030000cd030000d3030000f3030000
     - position: {x: 5.3862395, y: 0.08326292, z: -0.8800018}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 993
       connectedNodes: b2030000b90300002b040000f9030000
     - position: {x: 4.6915417, y: 1.0011694, z: 1.1502331}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 999
       connectedNodes: 8c030000740300001604000002040000
     - position: {x: 4.4766445, y: -0.033551574, z: -3.9212208}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1005
       connectedNodes: d3030000f203000061040000f3030000
     - position: {x: 3.8294008, y: -0.057426155, z: -4.7094016}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1010
       connectedNodes: d6030000ed0300006a040000d3070000
     - position: {x: 4.967079, y: 0.013808012, z: -2.9989905}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1011
       connectedNodes: d9030000ed0300004f040000f9030000
     - position: {x: 5.2795153, y: 0.06061697, z: -1.9699627}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1017
       connectedNodes: cd030000e1030000f30300003d040000
     - position: {x: 4.967079, y: 1.0902624, z: 0.16303277}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1026
       connectedNodes: b9030000e70300002b04000022040000
     - position: {x: 3.9022596, y: 1.7135377, z: 1.8615943}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1032
       connectedNodes: 74030000750300001502000016040000
     - position: {x: 4.251596, y: 1.881223, z: 1.0500219}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1046
       connectedNodes: e7030000080400000902000022040000
     - position: {x: 4.4766445, y: 2.0110695, z: 0.11571348}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1058
       connectedNodes: 1604000002040000f701000034040000
     - position: {x: 5.05828, y: 1.1300488, z: -0.88000166}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1067
       connectedNodes: e1030000020400003d04000034040000
     - position: {x: 4.551222, y: 2.0624437, z: -0.8800015}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1076
       connectedNodes: 220400002b040000eb01000046040000
     - position: {x: 4.967079, y: 1.0902624, z: -1.9230328}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1085
       connectedNodes: f90300002b0400004f04000046040000
     - position: {x: 4.4766445, y: 2.0110695, z: -1.8757067}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1094
       connectedNodes: 340400003d040000d001000058040000
     - position: {x: 4.6915417, y: 1.0011694, z: -2.910233}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1103
       connectedNodes: f30300003d0400006104000058040000
     - position: {x: 4.251596, y: 1.881223, z: -2.8100219}
       cost: 255
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1112
       connectedNodes: 460400004f040000be0100006d040000
     - position: {x: 4.251596, y: 0.9011731, z: -3.791079}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1121
       connectedNodes: ed0300004f0400006a0400006d040000
     - position: {x: 3.6572034, y: 0.8488184, z: -4.5372043}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1130
       connectedNodes: f20300006104000079040000f4070000
     - position: {x: 3.9022596, y: 1.7135377, z: -3.6215944}
       cost: 255
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1133
       connectedNodes: 5804000061040000b501000079040000
     - position: {x: 3.4094617, y: 1.6219068, z: -4.2894626}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1145
       connectedNodes: 6a0400006d040000b001000088080000
     - position: {x: -3.397916, y: -3.6621215, z: 2.5179152}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1153
       connectedNodes: 44010000840400008a0400001c060000
     - position: {x: -2.7335386, y: -3.7535377, z: 3.0094504}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1156
       connectedNodes: 3b010000810400008d04000093040000
     - position: {x: -3.644825, y: -2.8915575, z: 2.764824}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1162
       connectedNodes: 81040000930400009904000034060000
     - position: {x: -1.9236581, y: -3.9207935, z: 3.3576045}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1165
       connectedNodes: 35010000840400009c040000a8040000
     - position: {x: -2.9007945, y: -2.9436572, z: 3.3576045}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1171
       connectedNodes: 840400008a040000a2040000a8040000
     - position: {x: -3.8166733, y: -1.9886632, z: 2.9366722}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1177
       connectedNodes: 8a040000a2040000a50400004c060000
     - position: {x: -0.9923306, y: -4.0504513, z: 3.5813913}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1180
       connectedNodes: 1a0100008d040000b1040000c3040000
     - position: {x: -3.0304525, y: -2.0123363, z: 3.5813913}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1186
       connectedNodes: 9304000099040000b7040000bd040000
     - position: {x: -3.8890758, y: -1.02, z: 3.0090747}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1189
       connectedNodes: 99040000b7040000b904000064060000
     - position: {x: -2.0233724, y: -3.0433714, z: 3.7980614}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1192
       connectedNodes: 8d04000093040000bd040000c3040000
     - position: {x: -0.00000021934511, y: -4.1017456, z: 3.6559958}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1201
       connectedNodes: 170100009c040000cc040000d8040000
     - position: {x: -3.0556428, y: -1.02, z: 3.6930833}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1207
       connectedNodes: a2040000a5040000d3040000de040000
     - position: {x: -3.8294027, y: -0.057426155, z: 2.9494019}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1209
       connectedNodes: a5040000d3040000d40400007b060000
     - position: {x: -2.1119955, y: -2.0595818, z: 4.0729}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1213
       connectedNodes: a2040000a8040000de040000e4040000
     - position: {x: -1.0395828, y: -3.1319945, z: 4.0729}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1219
       connectedNodes: 9c040000a8040000d8040000e4040000
     - position: {x: 0.9923287, y: -4.0504513, z: 3.5813913}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1228
       connectedNodes: 22010000b1040000ed040000f9040000
     - position: {x: -3.0412216, y: -0.033551574, z: 3.5966454}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1235
       connectedNodes: b7040000b9040000f40400000c050000
     - position: {x: -3.6572053, y: 0.8488184, z: 2.7772045}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1236
       connectedNodes: b9040000f4040000f504000096060000
     - position: {x: -0.00000012077976, y: -3.1716602, z: 4.1641016}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1240
       connectedNodes: b1040000c3040000f9040000ff040000
     - position: {x: -2.104758, y: -1.02, z: 4.201323}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1246
       connectedNodes: b7040000bd040000050500000c050000
     - position: {x: -1.0862777, y: -2.1062768, z: 4.3842626}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1252
       connectedNodes: bd040000c3040000ff04000005050000
     - position: {x: 1.9236697, y: -3.9207935, z: 3.3576045}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1261
       connectedNodes: 28010000cc040000140500001d050000
     - position: {x: -2.91108, y: 0.9011866, z: 3.3715968}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1268
       connectedNodes: d3040000d40400008805000067050000
     - position: {x: -3.4094636, y: 1.6219068, z: 2.5294628}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1269
       connectedNodes: d40400007002000088050000ab060000
     - position: {x: 1.039581, y: -3.1319945, z: 4.0729}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1273
       connectedNodes: cc040000d80400001d0500002c050000
     - position: {x: -0.000000069476584, y: -2.128748, z: 4.4905562}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1279
       connectedNodes: d8040000e40400002c05000032050000
     - position: {x: -1.0729977, y: -1.02, z: 4.514297}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1285
       connectedNodes: de040000e40400003205000039050000
     - position: {x: -2.1189914, y: 0.013808012, z: 4.08708}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1292
       connectedNodes: d3040000de0400003905000067050000
     - position: {x: 2.7335367, y: -3.7535377, z: 3.0094504}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1300
       connectedNodes: 2e010000ed0400000103000023050000
     - position: {x: 2.0233705, y: -3.0433714, z: 3.7980614}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1309
       connectedNodes: ed040000f90400004405000023050000
     - position: {x: 2.9007926, y: -2.9436707, z: 3.3576045}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1315
       connectedNodes: 140500001d0500000a0300003e050000
     - position: {x: 1.0862758, y: -2.1062768, z: 4.3842626}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1324
       connectedNodes: f9040000ff0400004d05000044050000
     - position: {x: -0.000000052160487, y: -1.0200001, z: 4.62}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1330
       connectedNodes: ff040000050500004d05000061050000
     - position: {x: -1.0899637, y: 0.06061697, z: 4.399516}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1337
       connectedNodes: 050500000c0500008205000061050000
     - position: {x: 3.0304506, y: -2.0123363, z: 3.5813913}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1342
       connectedNodes: 23050000190300005305000044050000
     - position: {x: 2.1119936, y: -2.0595818, z: 4.0729}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1348
       connectedNodes: 1d0500002c0500003e05000059050000
     - position: {x: 1.0729958, y: -1.02, z: 4.514297}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1357
       connectedNodes: 2c050000320500007905000059050000
     - position: {x: 3.055641, y: -1.02, z: 3.6930833}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1363
       connectedNodes: 3e050000250300006d05000059050000
     - position: {x: 2.104756, y: -1.02, z: 4.201323}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1369
       connectedNodes: 440500004d0500005305000073050000
     - position: {x: -0.00000011444092, y: 0.083269715, z: 4.5062404}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1377
       connectedNodes: 3205000039050000ab05000079050000
     - position: {x: -2.030234, y: 1.0011694, z: 3.8115425}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1383
       connectedNodes: 0c050000f40400009605000082050000
     - position: {x: 3.0412197, y: -0.033551574, z: 3.5966454}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1389
       connectedNodes: 5305000039030000e105000073050000
     - position: {x: 2.1189895, y: 0.013808012, z: 4.08708}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1395
       connectedNodes: 590500006d050000cf05000079050000
     - position: {x: 1.0899618, y: 0.06061697, z: 4.399516}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1401
       connectedNodes: 4d0500006105000073050000bd050000
     - position: {x: -1.0430337, y: 1.0902624, z: 4.08708}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1410
       connectedNodes: 3905000067050000ab050000a2050000
     - position: {x: -2.7415953, y: 1.7135377, z: 3.0222607}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1416
       connectedNodes: f4040000f50400006102000096050000
     - position: {x: -1.9300228, y: 1.881223, z: 3.3715968}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1430
       connectedNodes: 670500008805000052020000a2050000
     - position: {x: -0.9957144, y: 2.0110695, z: 3.5966454}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1442
       connectedNodes: 960500008205000043020000b4050000
     - position: {x: -0.00000011444092, y: 1.1300488, z: 4.178281}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1451
       connectedNodes: 6105000082050000bd050000b4050000
     - position: {x: -0.00000021934511, y: 2.0624437, z: 3.6712227}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1460
       connectedNodes: a2050000ab05000032020000c6050000
     - position: {x: 1.0430318, y: 1.0902624, z: 4.08708}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1469
       connectedNodes: 79050000ab050000cf050000c6050000
     - position: {x: 0.9957125, y: 2.0110695, z: 3.5966454}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1478
       connectedNodes: b4050000bd05000029020000d8050000
     - position: {x: 2.0302322, y: 1.0011694, z: 3.8115425}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1487
       connectedNodes: 73050000bd050000e1050000d8050000
     - position: {x: 1.9300209, y: 1.881223, z: 3.3715968}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1496
       connectedNodes: c6050000cf0500001d020000ed050000
     - position: {x: 2.911078, y: 0.9011866, z: 3.3715968}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1505
       connectedNodes: 6d050000cf05000054030000ed050000
     - position: {x: 2.7415934, y: 1.7135377, z: 3.0222607}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1517
       connectedNodes: d8050000e10500001802000075030000
     - position: {x: -4.535997, y: -4.1017456, z: -0.8799996}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1537
       connectedNodes: bf000000040600000a060000dc060000
     - position: {x: -4.4613924, y: -4.0504513, z: 0.1123364}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1540
       connectedNodes: 69010000010600000d06000013060000
     - position: {x: -5.0441027, y: -3.1716602, z: -0.8799996}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1546
       connectedNodes: 010600001306000019060000f4060000
     - position: {x: -4.2376056, y: -3.9207935, z: 1.0436707}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1549
       connectedNodes: 5a010000040600001c06000025060000
     - position: {x: -4.952901, y: -3.1319945, z: 0.1595819}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1555
       connectedNodes: 040600000a060000250600002b060000
     - position: {x: -5.3705573, y: -2.1287413, z: -0.8799996}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1561
       connectedNodes: 0a0600002b060000310600000c070000
     - position: {x: -3.8894515, y: -3.7535377, z: 1.8535377}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1564
       connectedNodes: 480100000d0600008104000034060000
     - position: {x: -4.6780624, y: -3.0433714, z: 1.1433715}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1573
       connectedNodes: 0d060000130600003d06000034060000
     - position: {x: -5.2642636, y: -2.1062768, z: 0.20627677}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1579
       connectedNodes: 13060000190600003d06000043060000
     - position: {x: -5.500001, y: -1.02, z: -0.88}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1585
       connectedNodes: 19060000430600004806000024070000
     - position: {x: -4.2376056, y: -2.9436572, z: 2.0207934}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1588
       connectedNodes: 1c060000250600008a0400004c060000
     - position: {x: -4.952901, y: -2.0595818, z: 1.2319945}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1597
       connectedNodes: 250600002b0600005b0600004c060000
     - position: {x: -5.394298, y: -1.02, z: 0.19299674}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1603
       connectedNodes: 2b06000031060000560600005b060000
     - position: {x: -5.3862414, y: 0.083269715, z: -0.88}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1608
       connectedNodes: 3106000056060000570600003b070000
     - position: {x: -4.4613924, y: -2.0123363, z: 2.1504517}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1612
       connectedNodes: 340600003d0600009904000064060000
     - position: {x: -5.279517, y: 0.06061697, z: 0.20996273}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1622
       connectedNodes: 43060000480600006e06000074060000
     - position: {x: -5.058282, y: 1.1300488, z: -0.88}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1623
       connectedNodes: 480600006e0600006f06000056070000
     - position: {x: -5.081324, y: -1.02, z: 1.2247571}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1627
       connectedNodes: 3d060000430600007406000064060000
     - position: {x: -4.5730844, y: -1.02, z: 2.175642}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1636
       connectedNodes: 4c0600005b060000a50400007b060000
     - position: {x: -4.967081, y: 1.0902624, z: 0.16303277}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1646
       connectedNodes: 5606000057060000860600008f060000
     - position: {x: -4.5512238, y: 2.0624437, z: -0.88}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1647
       connectedNodes: 5706000086060000b10200006b070000
     - position: {x: -4.967081, y: 0.013808012, z: 1.2389904}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1652
       connectedNodes: 560600005b0600008f0600007b060000
     - position: {x: -4.4766464, y: -0.033551574, z: 2.1612206}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1659
       connectedNodes: 6406000074060000b904000096060000
     - position: {x: -4.4766464, y: 2.0110695, z: 0.11571348}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1670
       connectedNodes: 6e0600006f0600009c020000a1060000
     - position: {x: -4.6915436, y: 1.0011694, z: 1.1502331}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1679
       connectedNodes: 6e0600007406000096060000a1060000
     - position: {x: -4.251598, y: 0.9011866, z: 2.0310788}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1686
       connectedNodes: 7b0600008f060000d4040000ab060000
     - position: {x: -4.251598, y: 1.881223, z: 1.0500219}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1697
       connectedNodes: 860600008f0600008d020000ab060000
     - position: {x: -3.9022615, y: 1.7135377, z: 1.8615943}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1707
       connectedNodes: 96060000a1060000f504000075020000
     - position: {x: -3.397916, y: -3.6621215, z: -4.277915}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1729
       connectedNodes: e3000000c4060000ca06000014080000
     - position: {x: -3.8894515, y: -3.7535377, z: -3.6135378}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1732
       connectedNodes: da000000c1060000cd060000d3060000
     - position: {x: -3.644825, y: -2.8915575, z: -4.524824}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1738
       connectedNodes: c1060000d3060000d906000023080000
     - position: {x: -4.2376056, y: -3.9207935, z: -2.803657}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1741
       connectedNodes: ce000000c4060000dc060000eb060000
     - position: {x: -4.2376056, y: -2.9436572, z: -3.7807937}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1747
       connectedNodes: c4060000ca060000e5060000eb060000
     - position: {x: -3.8166733, y: -1.9886632, z: -4.6966724}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1753
       connectedNodes: ca060000e5060000e80600003e080000
     - position: {x: -4.4613924, y: -4.0504513, z: -1.8723364}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1756
       connectedNodes: c2000000cd06000001060000f4060000
     - position: {x: -4.4613924, y: -2.0123363, z: -3.9104514}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1765
       connectedNodes: d3060000d9060000fd06000003070000
     - position: {x: -3.8906064, y: -1.0297197, z: -4.7706056}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1768
       connectedNodes: d9060000fd060000ff06000053080000
     - position: {x: -4.6780624, y: -3.0433714, z: -2.9033713}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1771
       connectedNodes: cd060000d306000003070000f4060000
     - position: {x: -4.952901, y: -3.1319945, z: -1.9195819}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1780
       connectedNodes: dc060000eb0600000a0600000c070000
     - position: {x: -4.5512238, y: -1.0297197, z: -3.9726486}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1789
       connectedNodes: e5060000e8060000160700001b070000
     - position: {x: -3.8294027, y: -0.057426155, z: -4.7094016}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1791
       connectedNodes: e806000016070000170700006d080000
     - position: {x: -4.952901, y: -2.0595818, z: -2.9919944}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1795
       connectedNodes: e5060000eb0600001b0700000c070000
     - position: {x: -5.2642636, y: -2.1062768, z: -1.9662768}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1804
       connectedNodes: f4060000030700001906000024070000
     - position: {x: -4.4766464, y: -0.033551574, z: -3.9212208}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1814
       connectedNodes: fd060000ff0600002e07000034070000
     - position: {x: -3.6572053, y: 0.8488184, z: -4.5372043}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1815
       connectedNodes: ff0600002e0700002f070000e1080000
     - position: {x: -5.058282, y: -1.0297196, z: -3.039032}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1819
       connectedNodes: fd060000030700003407000024070000
     - position: {x: -5.3862414, y: -1.0297196, z: -1.9924945}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1828
       connectedNodes: 0c0700001b070000310600003b070000
     - position: {x: -4.251598, y: 0.9011866, z: -3.791079}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1838
       connectedNodes: 1607000017070000460700004f070000
     - position: {x: -3.4094636, y: 1.6219068, z: -4.2894626}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1839
       connectedNodes: 1707000046070000b4020000ed080000
     - position: {x: -4.967081, y: 0.013808012, z: -2.9989905}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1844
       connectedNodes: 160700001b0700004f0700003b070000
     - position: {x: -5.279517, y: 0.06061697, z: -1.9699627}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1851
       connectedNodes: 24070000340700004806000056070000
     - position: {x: -3.9022615, y: 1.7135377, z: -3.6215944}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1862
       connectedNodes: 2e0700002f070000b202000061070000
     - position: {x: -4.6915436, y: 1.0011694, z: -2.910233}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1871
       connectedNodes: 2e070000340700005607000061070000
     - position: {x: -4.967081, y: 1.0902624, z: -1.9230328}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1878
       connectedNodes: 3b0700004f070000570600006b070000
     - position: {x: -4.251598, y: 1.881223, z: -2.8100219}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1889
       connectedNodes: 460700004f070000bb0200006b070000
     - position: {x: -4.4766464, y: 2.0110695, z: -1.8757135}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1899
       connectedNodes: 56070000610700006f060000c7020000
     - position: {x: 2.7335367, y: -3.7535377, z: -4.7694507}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1924
       connectedNodes: 380000009a0300008d07000093070000
     - position: {x: 1.9236562, y: -3.9207935, z: -5.1176047}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1933
       connectedNodes: 41000000840700009c070000a8070000
     - position: {x: 2.9007926, y: -2.9436707, z: -5.1176047}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1939
       connectedNodes: a903000084070000a2070000a8070000
     - position: {x: 0.99233544, y: -4.0504513, z: -5.3413916}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1948
       connectedNodes: 530000008d070000b1070000c3070000
     - position: {x: 3.0304506, y: -2.0123363, z: -5.3413916}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1954
       connectedNodes: c103000093070000b7070000bd070000
     - position: {x: 2.0233705, y: -3.0433714, z: -5.5580616}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1960
       connectedNodes: 8d07000093070000bd070000c3070000
     - position: {x: -0.00000066833485, y: -4.1017456, z: -5.415996}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1969
       connectedNodes: 710000009c070000cc070000d8070000
     - position: {x: 3.0926478, y: -1.02972, z: -5.431223}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1975
       connectedNodes: d6030000a2070000d3070000de070000
     - position: {x: 2.1119936, y: -2.0595818, z: -5.8329}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1981
       connectedNodes: a2070000a8070000de070000e4070000
     - position: {x: 1.039581, y: -3.1319945, z: -5.8329}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1987
       connectedNodes: 9c070000a8070000d8070000e4070000
     - position: {x: -0.99233735, y: -4.0504513, z: -5.3413916}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 1996
       connectedNodes: 83000000b1070000ed070000f9070000
     - position: {x: 3.0412197, y: -0.033551574, z: -5.3566456}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2003
       connectedNodes: f2030000b7070000f40700000c080000
     - position: {x: -0.0000010459897, y: -3.1716602, z: -5.924102}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2008
       connectedNodes: b1070000c3070000f9070000ff070000
     - position: {x: 2.1590312, y: -1.02972, z: -5.938281}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2014
       connectedNodes: b7070000bd070000050800000c080000
     - position: {x: 1.0862758, y: -2.1062768, z: -6.144263}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2020
       connectedNodes: bd070000c3070000ff07000005080000
     - position: {x: -1.9236716, y: -3.9207935, z: -5.1176047}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2029
       connectedNodes: 9b000000cc070000140800001d080000
     - position: {x: 2.911078, y: 0.9011866, z: -5.131597}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2036
       connectedNodes: 6a040000d30700008808000067080000
     - position: {x: -1.0395828, y: -3.1319945, z: -5.8329}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2041
       connectedNodes: cc070000d80700001d0800002c080000
     - position: {x: -0.00000058441276, y: -2.128748, z: -6.2505565}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2047
       connectedNodes: d8070000e40700002c08000032080000
     - position: {x: 1.1124935, y: -1.02972, z: -6.2662406}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2053
       connectedNodes: de070000e40700003208000039080000
     - position: {x: 2.1189895, y: 0.013808012, z: -5.84708}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2060
       connectedNodes: d3070000de0700003908000067080000
     - position: {x: -2.7335386, y: -3.7535377, z: -4.7694507}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2068
       connectedNodes: dd000000ed070000c106000023080000
     - position: {x: -2.0233724, y: -3.0433714, z: -5.5580616}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2077
       connectedNodes: ed070000f90700004408000023080000
     - position: {x: -2.9007945, y: -2.9436572, z: -5.1176047}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2083
       connectedNodes: 140800001d080000ca0600003e080000
     - position: {x: -1.0862777, y: -2.1062768, z: -6.144263}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2092
       connectedNodes: f9070000ff0700004d08000044080000
     - position: {x: -0.000003412366, y: -1.02, z: -6.38}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2098
       connectedNodes: ff070000050800004d08000061080000
     - position: {x: 1.0899618, y: 0.06061697, z: -6.1595163}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2105
       connectedNodes: 050800000c0800008208000061080000
     - position: {x: -3.0304525, y: -2.0123363, z: -5.3413916}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2110
       connectedNodes: 23080000d90600005308000044080000
     - position: {x: -2.1119955, y: -2.0595818, z: -5.8329}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2116
       connectedNodes: 1d0800002c0800003e08000059080000
     - position: {x: -1.1124954, y: -1.0297198, z: -6.2662406}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2125
       connectedNodes: 2c080000320800007908000059080000
     - position: {x: -3.0926497, y: -1.0297197, z: -5.431223}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2131
       connectedNodes: 3e080000e80600006d08000059080000
     - position: {x: -2.159033, y: -1.0297198, z: -5.938281}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2137
       connectedNodes: 440800004d0800005308000073080000
     - position: {x: -0.0000033664703, y: 0.083269715, z: -6.2662406}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2145
       connectedNodes: 3208000039080000ab08000079080000
     - position: {x: 2.0302322, y: 1.0011694, z: -5.5715427}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2151
       connectedNodes: 0c080000f40700009608000082080000
     - position: {x: -3.0412216, y: -0.033551574, z: -5.3566456}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2157
       connectedNodes: 53080000ff060000e108000073080000
     - position: {x: -2.1189914, y: 0.013808012, z: -5.84708}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2163
       connectedNodes: 590800006d080000cf08000079080000
     - position: {x: -1.0899637, y: 0.06061697, z: -6.1595163}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2169
       connectedNodes: 4d0800006108000073080000bd080000
     - position: {x: 1.0430318, y: 1.0902624, z: -5.84708}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2178
       connectedNodes: 3908000067080000ab080000a2080000
     - position: {x: 2.7415934, y: 1.7135377, z: -4.7822604}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2184
       connectedNodes: f407000079040000aa01000096080000
     - position: {x: 1.9300209, y: 1.881223, z: -5.131597}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2198
       connectedNodes: 6708000088080000a7010000a2080000
     - position: {x: 0.9957058, y: 2.0110695, z: -5.3566456}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2210
       connectedNodes: 9608000082080000ba010000b4080000
     - position: {x: -0.0000032615662, y: 1.1300488, z: -5.938281}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2219
       connectedNodes: 6108000082080000bd080000b4080000
     - position: {x: -0.0000029468536, y: 2.0624437, z: -5.431223}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2228
       connectedNodes: a2080000ab080000c6010000c6080000
     - position: {x: -1.0430337, y: 1.0902624, z: -5.84708}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2237
       connectedNodes: 79080000ab080000cf080000c6080000
     - position: {x: -0.9957077, y: 2.0110695, z: -5.3566456}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2246
       connectedNodes: b4080000bd080000d6010000d8080000
     - position: {x: -2.030234, y: 1.0011694, z: -5.5715427}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2255
       connectedNodes: 73080000bd080000e1080000d8080000
     - position: {x: -1.9300228, y: 1.881223, z: -5.131597}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2264
       connectedNodes: c6080000cf080000f1010000ed080000
     - position: {x: -2.91108, y: 0.9011866, z: -5.131597}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2273
       connectedNodes: 6d080000cf08000017070000ed080000
     - position: {x: -2.7415953, y: 1.7135377, z: -4.7822604}
       cost: 1
       value: 2147483647
       direction: {x: 0, y: 0, z: 0}
-      Walkable: {fileID: 555792082}
+      Walkable: {fileID: 0}
       id: 2285
       connectedNodes: d8080000e1080000b30200002f070000
     - position: {x: 21, y: -5, z: 5}
@@ -5999,21 +5665,111 @@ MonoBehaviour:
       connectedNodes: 4f110000ad110000af110000d4110000
   subdivide: 0
   vertexExplode: 1
-  playerTransform: {fileID: 552068360}
---- !u!114 &555792083
+  playerTransform: {fileID: 0}
+--- !u!65 &997548416
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997548414}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &997548417
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997548414}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &997548418
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997548414}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &997548419
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997548414}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_Children:
+  - {fileID: 27614366}
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &997548420
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 555792076}
+  m_GameObject: {fileID: 997548414}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e15f67779708f4944897efe14b4940bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 810428260}
---- !u!1 &705507993
+  spawnPoint: {fileID: 27614366}
+--- !u!114 &997548421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997548414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8a3ef198540254d9cfd331decb82b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Gravity: 400
+--- !u!1 &1473072233
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6021,8 +5777,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 705507995}
-  - component: {fileID: 705507994}
+  - component: {fileID: 1473072235}
+  - component: {fileID: 1473072234}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -6030,18 +5786,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!108 &705507994
+--- !u!108 &1473072234
 Light:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 705507993}
+  m_GameObject: {fileID: 1473072233}
   m_Enabled: 1
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.9357548, g: 0.8392157, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -6081,7 +5837,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -6091,737 +5847,21 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!4 &705507995
+--- !u!4 &1473072235
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 705507993}
+  m_GameObject: {fileID: 1473072233}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: -11.443302, y: 4.7886887, z: -11.28545}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1487751683}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &810428259
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 810428260}
-  - component: {fileID: 810428261}
-  m_Layer: 0
-  m_Name: SpawnPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &810428260
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 810428259}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00000008940697, y: 0.502, z: -0.011999965}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
-  m_Children: []
-  m_Father: {fileID: 555792081}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &810428261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 810428259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c200a19defd8fb43b30fc7e2f96c91c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1001 &1034210660
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1127422367408890887, guid: ddcb1cc4f3947a24c86a9e896c29169c, type: 3}
-      propertyPath: playerHealth
-      value: 
-      objectReference: {fileID: 2384744735309291334}
-    - target: {fileID: 5089213955646438258, guid: ddcb1cc4f3947a24c86a9e896c29169c, type: 3}
-      propertyPath: m_Name
-      value: Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 8757483279529884093, guid: ddcb1cc4f3947a24c86a9e896c29169c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8757483279529884093, guid: ddcb1cc4f3947a24c86a9e896c29169c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8757483279529884093, guid: ddcb1cc4f3947a24c86a9e896c29169c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8757483279529884093, guid: ddcb1cc4f3947a24c86a9e896c29169c, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8757483279529884093, guid: ddcb1cc4f3947a24c86a9e896c29169c, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8757483279529884093, guid: ddcb1cc4f3947a24c86a9e896c29169c, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8757483279529884093, guid: ddcb1cc4f3947a24c86a9e896c29169c, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8757483279529884093, guid: ddcb1cc4f3947a24c86a9e896c29169c, type: 3}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8757483279529884093, guid: ddcb1cc4f3947a24c86a9e896c29169c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8757483279529884093, guid: ddcb1cc4f3947a24c86a9e896c29169c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8757483279529884093, guid: ddcb1cc4f3947a24c86a9e896c29169c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8757483279529884093, guid: ddcb1cc4f3947a24c86a9e896c29169c, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8757483279529884093, guid: ddcb1cc4f3947a24c86a9e896c29169c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8757483279529884093, guid: ddcb1cc4f3947a24c86a9e896c29169c, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8757483279529884093, guid: ddcb1cc4f3947a24c86a9e896c29169c, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8757483279529884093, guid: ddcb1cc4f3947a24c86a9e896c29169c, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8757483279529884093, guid: ddcb1cc4f3947a24c86a9e896c29169c, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8757483279529884093, guid: ddcb1cc4f3947a24c86a9e896c29169c, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8757483279529884093, guid: ddcb1cc4f3947a24c86a9e896c29169c, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8757483279529884093, guid: ddcb1cc4f3947a24c86a9e896c29169c, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8757483279529884093, guid: ddcb1cc4f3947a24c86a9e896c29169c, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ddcb1cc4f3947a24c86a9e896c29169c, type: 3}
---- !u!1 &1147360730
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1147360732}
-  - component: {fileID: 1147360731}
-  m_Layer: 0
-  m_Name: SceneManagement
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1147360731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1147360730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 949db8adfcc22164ea52e053606fc918, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeAnimator: {fileID: 1608350154}
-  _canvas: {fileID: 478825797}
---- !u!4 &1147360732
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1147360730}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.8281913, y: -6.138379, z: 8.267299}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1242634652
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1242634656}
-  - component: {fileID: 1242634655}
-  - component: {fileID: 1242634654}
-  - component: {fileID: 1242634653}
-  m_Layer: 8
-  m_Name: Obstacle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!65 &1242634653
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1242634652}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &1242634654
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1242634652}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1242634655
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1242634652}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1242634656
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1242634652}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.3000001, y: 0.402, z: -0.212}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
-  m_Children: []
-  m_Father: {fileID: 555792081}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1487751682
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1487751683}
-  m_Layer: 0
-  m_Name: Lighting
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1487751683
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1487751682}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.443302, y: -1.7886887, z: 11.28545}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 705507995}
-  - {fileID: 108377859}
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1608350154 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 7443195365064278293, guid: ddcb1cc4f3947a24c86a9e896c29169c, type: 3}
-  m_PrefabInstance: {fileID: 1034210660}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1953828531
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1953828536}
-  - component: {fileID: 1953828535}
-  - component: {fileID: 1953828534}
-  - component: {fileID: 1953828533}
-  - component: {fileID: 1953828532}
-  m_Layer: 0
-  m_Name: Teleporter
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1953828532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1953828531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e18d18d7c999a94e9a202052ae6631a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cost: 5
---- !u!65 &1953828533
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1953828531}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &1953828534
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1953828531}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 4f128c4fca7b0b343acada2dd3a8ecb1, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1953828535
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1953828531}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1953828536
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1953828531}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00000008940697, y: 0.20199999, z: -0.41199997}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
-  m_Children: []
-  m_Father: {fileID: 555792081}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2027162166
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2027162174}
-  - component: {fileID: 2027162173}
-  - component: {fileID: 2027162172}
-  - component: {fileID: 2027162171}
-  - component: {fileID: 2027162170}
-  - component: {fileID: 2027162169}
-  - component: {fileID: 2027162168}
-  - component: {fileID: 2027162167}
-  m_Layer: 9
-  m_Name: Agent (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2027162167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2027162166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30afb88281fb9a44b95352bd00601efe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EditorCurrentHealth: 1
-  EditorMaxHealth: 1
---- !u!114 &2027162168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2027162166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d888189b24e069b4eba564a0271a2c84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pathFindingGrid: {fileID: 0}
-  speed: 400
---- !u!114 &2027162169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2027162166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86de5f4ec6d66164bab39b3a1d6d94b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  localGravityStrength: 1
---- !u!54 &2027162170
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2027162166}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!136 &2027162171
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2027162166}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &2027162172
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2027162166}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &2027162173
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2027162166}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &2027162174
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2027162166}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 1, z: -6}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!850595691 &2146881383
-LightingSettings:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Settings.lighting
-  serializedVersion: 2
-  m_GIWorkflowMode: 1
-  m_EnableBakedLightmaps: 1
-  m_EnableRealtimeLightmaps: 0
-  m_RealtimeEnvironmentLighting: 1
-  m_BounceScale: 1
-  m_AlbedoBoost: 1
-  m_IndirectOutputScale: 1
-  m_UsingShadowmask: 1
-  m_BakeBackend: 1
-  m_LightmapMaxSize: 1024
-  m_BakeResolution: 40
-  m_Padding: 2
-  m_TextureCompression: 1
-  m_AO: 0
-  m_AOMaxDistance: 1
-  m_CompAOExponent: 1
-  m_CompAOExponentDirect: 0
-  m_ExtractAO: 0
-  m_MixedBakeMode: 2
-  m_LightmapsBakeMode: 1
-  m_FilterMode: 1
-  m_LightmapParameters: {fileID: 0}
-  m_ExportTrainingData: 0
-  m_TrainingDataDestination: TrainingData
-  m_RealtimeResolution: 2
-  m_ForceWhiteAlbedo: 0
-  m_ForceUpdates: 0
-  m_FinalGather: 0
-  m_FinalGatherRayCount: 256
-  m_FinalGatherFiltering: 1
-  m_PVRCulling: 1
-  m_PVRSampling: 1
-  m_PVRDirectSampleCount: 32
-  m_PVRSampleCount: 500
-  m_PVREnvironmentSampleCount: 500
-  m_PVREnvironmentReferencePointCount: 2048
-  m_LightProbeSampleCountMultiplier: 4
-  m_PVRBounces: 2
-  m_PVRRussianRouletteStartBounce: 2
-  m_PVREnvironmentMIS: 0
-  m_PVRFilteringMode: 2
-  m_PVRDenoiserTypeDirect: 0
-  m_PVRDenoiserTypeIndirect: 0
-  m_PVRDenoiserTypeAO: 0
-  m_PVRFilterTypeDirect: 0
-  m_PVRFilterTypeIndirect: 0
-  m_PVRFilterTypeAO: 0
-  m_PVRFilteringGaussRadiusDirect: 1
-  m_PVRFilteringGaussRadiusIndirect: 5
-  m_PVRFilteringGaussRadiusAO: 2
-  m_PVRFilteringAtrousPositionSigmaDirect: 0.5
-  m_PVRFilteringAtrousPositionSigmaIndirect: 2
-  m_PVRFilteringAtrousPositionSigmaAO: 1
---- !u!1001 &2384744735309291333
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2384744734786599495, guid: 6442b0c65d884194e9208fd16283712f, type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 2384744734786599501, guid: 6442b0c65d884194e9208fd16283712f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2384744734786599501, guid: 6442b0c65d884194e9208fd16283712f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2384744734786599501, guid: 6442b0c65d884194e9208fd16283712f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.21
-      objectReference: {fileID: 0}
-    - target: {fileID: 2384744734786599501, guid: 6442b0c65d884194e9208fd16283712f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2384744734786599501, guid: 6442b0c65d884194e9208fd16283712f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2384744734786599501, guid: 6442b0c65d884194e9208fd16283712f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2384744734786599501, guid: 6442b0c65d884194e9208fd16283712f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2384744734786599501, guid: 6442b0c65d884194e9208fd16283712f, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2384744734786599501, guid: 6442b0c65d884194e9208fd16283712f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2384744734786599501, guid: 6442b0c65d884194e9208fd16283712f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2384744734786599501, guid: 6442b0c65d884194e9208fd16283712f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6442b0c65d884194e9208fd16283712f, type: 3}
---- !u!114 &2384744735309291334 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4792257593870706454, guid: 6442b0c65d884194e9208fd16283712f, type: 3}
-  m_PrefabInstance: {fileID: 2384744735309291333}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 201239033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30afb88281fb9a44b95352bd00601efe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1001 &2586653886604804053
+--- !u!1001 &1728076016
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -6830,11 +5870,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2586653886986574281, guid: 834ee290594f44245b92432fe71bef11, type: 3}
       propertyPath: m_Name
-      value: Agent
+      value: Agent (2)
       objectReference: {fileID: 0}
     - target: {fileID: 2586653886986574326, guid: 834ee290594f44245b92432fe71bef11, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2586653886986574326, guid: 834ee290594f44245b92432fe71bef11, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6878,64 +5918,60 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 834ee290594f44245b92432fe71bef11, type: 3}
---- !u!1001 &4331167891290826389
+--- !u!1001 &1730963856
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4331167891167546336, guid: 99737798f359b3641b8e3002efe6171b, type: 3}
-      propertyPath: Target
-      value: 
-      objectReference: {fileID: 552068360}
-    - target: {fileID: 4331167891167546337, guid: 99737798f359b3641b8e3002efe6171b, type: 3}
+    - target: {fileID: 2586653886986574281, guid: 834ee290594f44245b92432fe71bef11, type: 3}
+      propertyPath: m_Name
+      value: Agent
+      objectReference: {fileID: 0}
+    - target: {fileID: 2586653886986574326, guid: 834ee290594f44245b92432fe71bef11, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4331167891167546337, guid: 99737798f359b3641b8e3002efe6171b, type: 3}
+    - target: {fileID: 2586653886986574326, guid: 834ee290594f44245b92432fe71bef11, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 17.14
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4331167891167546337, guid: 99737798f359b3641b8e3002efe6171b, type: 3}
+    - target: {fileID: 2586653886986574326, guid: 834ee290594f44245b92432fe71bef11, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -6
       objectReference: {fileID: 0}
-    - target: {fileID: 4331167891167546337, guid: 99737798f359b3641b8e3002efe6171b, type: 3}
+    - target: {fileID: 2586653886986574326, guid: 834ee290594f44245b92432fe71bef11, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4331167891167546337, guid: 99737798f359b3641b8e3002efe6171b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4331167891167546337, guid: 99737798f359b3641b8e3002efe6171b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4331167891167546337, guid: 99737798f359b3641b8e3002efe6171b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4331167891167546337, guid: 99737798f359b3641b8e3002efe6171b, type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4331167891167546337, guid: 99737798f359b3641b8e3002efe6171b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
+    - target: {fileID: 2586653886986574326, guid: 834ee290594f44245b92432fe71bef11, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4331167891167546337, guid: 99737798f359b3641b8e3002efe6171b, type: 3}
+    - target: {fileID: 2586653886986574326, guid: 834ee290594f44245b92432fe71bef11, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2586653886986574326, guid: 834ee290594f44245b92432fe71bef11, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2586653886986574326, guid: 834ee290594f44245b92432fe71bef11, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2586653886986574326, guid: 834ee290594f44245b92432fe71bef11, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2586653886986574326, guid: 834ee290594f44245b92432fe71bef11, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4331167891167546337, guid: 99737798f359b3641b8e3002efe6171b, type: 3}
+    - target: {fileID: 2586653886986574326, guid: 834ee290594f44245b92432fe71bef11, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4331167891167546340, guid: 99737798f359b3641b8e3002efe6171b, type: 3}
-      propertyPath: m_Name
-      value: PlayerFollowCamera
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 99737798f359b3641b8e3002efe6171b, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 834ee290594f44245b92432fe71bef11, type: 3}

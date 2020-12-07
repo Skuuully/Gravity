@@ -5,6 +5,9 @@ using Test;
 using UnityEngine;
 
 public class Health : MonoBehaviour, IObservable<float> {
+    public delegate void OnDeath();
+    public event OnDeath onDeathObservers;
+
     public float EditorCurrentHealth;
     public float EditorMaxHealth;
     private float _currentHealth;
@@ -40,7 +43,8 @@ public class Health : MonoBehaviour, IObservable<float> {
         
     }
 
-    private void Kill() {
+    public void Kill() {
+        onDeathObservers?.Invoke();
         Destroy(gameObject);
     }
 

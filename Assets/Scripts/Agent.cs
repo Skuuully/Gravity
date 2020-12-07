@@ -11,14 +11,35 @@ using Node = Test.Node;
 [RequireComponent(typeof(Health))]
 public class Agent : MonoBehaviour, IDamage {
     private static List<Health> agentHealth = new List<Health>();
-    public Walkable pathFindingGrid;
+    [SerializeField] private Walkable pathFindingGrid;
+    private Node _flowNode = null;
+    private Health _health;
 
     private Rigidbody _rigidbody;
     public int speed = 600;
 
     private void Awake() {
         _rigidbody = GetComponent<Rigidbody>();
-        agentHealth.Add(gameObject.GetComponent<Health>());
+        _health = GetComponent<Health>();
+        agentHealth.Add(_health);
+        var walkables = FindObjectsOfType<Walkable>();
+        if (walkables != null) {
+            float shortestDist = float.MaxValue;
+            pathFindingGrid = walkables[0];
+            foreach (var walkable in walkables) {
+                float dist = Mathf.Abs((transform.position - walkable.gameObject.transform.position).magnitude);
+                if (dist < shortestDist) {
+                    pathFindingGrid = walkable;
+                    shortestDist = dist;
+                }
+            }
+        }
+        
+        _health.onDeathObservers += OnDeath;
+    }
+
+    private void OnDeath() {
+        PlayerCurrency.Instance.Increase(2);
     }
 
     private void FixedUpdate() {
@@ -34,8 +55,8 @@ public class Agent : MonoBehaviour, IDamage {
     /// Rotates the agent in such that its forward will follow the flow nodes
     /// </summary>
     void Rotate() {
-        Node flowNode = pathFindingGrid.GetNearestNode(transform.position);
-        var direction = ShouldUseFlowNodeDirection(flowNode) ? flowNode.direction : transform.forward;
+        _flowNode = pathFindingGrid.GetNearestNode(transform.position, _flowNode);
+        var direction = ShouldUseFlowNodeDirection(_flowNode) ? _flowNode.direction : transform.forward;
 
         Quaternion targetRotation = Quaternion.LookRotation(direction, transform.up);
 
@@ -63,7 +84,7 @@ public class Agent : MonoBehaviour, IDamage {
     }
 
     public float GetDamage() {
-        Destroy(gameObject);
+        _health.Kill();
         return 1f;
     }
 

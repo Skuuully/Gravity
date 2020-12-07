@@ -6,14 +6,29 @@ using UnityEngine;
 namespace Test {
 
     [RequireComponent(typeof(MeshFilter))]
+    [Serializable]
     public class Walkable : MonoBehaviour {
-        private Mesh _mesh;
         [SerializeField] private NodeList _nodeList;
+        private List<Node> _nodes = new List<Node>();
 
         [SerializeField] private int subdivide = 0;
         [SerializeField] private float vertexExplode = 1f;
 
+        public float VertexExplode => vertexExplode;
+        public int Subdivide => subdivide;
+
         public Transform playerTransform;
+
+        private void Awake() {
+            if (_nodes == null) {
+                _nodes = NodeList.AllNodes.FindAll(node => node.Walkable == this);
+            }
+        }
+
+        private void OnValidate() {
+            _nodes = NodeList.AllNodes.FindAll(node => node.Walkable == this);
+        }
+
 
         private void FixedUpdate() {
             if (playerTransform != null) {
@@ -21,27 +36,37 @@ namespace Test {
             }
         }
 
-        public void BakeNavigation() {
-            _mesh = GetComponent<MeshFilter>().sharedMesh;
-            NodeList.Bake(_mesh, transform, vertexExplode, subdivide);
-        }
+        /// <summary>
+        /// Gets the nearest node to the position
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="previousClosest">Optional parameter of the previous closest, limits the search to the node and
+        /// its connected node</param>
+        /// <returns>The nearest node on the grid</returns>
+        public Node GetNearestNode(Vector3 position, Node previousClosest = null) {
+            List<Node> nodes = _nodes;
 
-        public void DestroyNavigation() {
-            NodeList.AllNodes = new List<Node>();
-        }
+            if (previousClosest != null) {
+                nodes.Clear();
+                nodes.Add(NodeList.GetNode(previousClosest.id));
+                foreach (int nodeId in previousClosest.connectedNodes) {
+                    nodes.Add(NodeList.GetNode(nodeId));
+                }
+            }
 
-        public Node GetNearestNode(Vector3 position) {
-            return _nodeList.GetNearestNode(position);
+            return NodeList.GetNearestNode(_nodes, position);
         }
 
         void GenerateFlowField(Vector3 targetPosition) {
-            _nodeList.GenerateFlowField(targetPosition);
+            if (_nodes?.Count > 0) {
+                _nodeList.GenerateFlowField(_nodes, targetPosition);
+            }
         }
 
         private void OnDrawGizmosSelected() {
-            if (_nodeList?.GetNodes() != null) {
+            if (_nodes?.Count > 0) {
                 if (!Application.isPlaying) {
-                    foreach (Node node in _nodeList.GetNodes()) {
+                    foreach (Node node in _nodes) {
                         foreach (int i in node.connectedNodes) {
                             Node connected = NodeList.GetNode(i);
                             Gizmos.color = Color.magenta;
@@ -50,7 +75,7 @@ namespace Test {
                         }
                     }
                 } else {
-                    foreach (var node in _nodeList.GetNodes()) {
+                    foreach (var node in _nodes) {
                         if (node.cost != 255) {
                             Color color = new Color();
                             color.r = 0f;
@@ -74,24 +99,39 @@ namespace Test {
     [Serializable]
     public class NodeList : ISerializationCallbackReceiver {
         public static List<Node> AllNodes;
+        public static List<Walkable> Walkables;
 
         [SerializeField] private List<Node> serializedNodes;
 
-        public static void Bake(Mesh mesh, Transform transform, float vertexExplode, int subdivide) {
+        public static void Clear() {
+            AllNodes = new List<Node>();
+            Walkables = new List<Walkable>();
+        }
+
+        public static void Bake() {
+            foreach (Walkable walkable in Walkables) {
+                Bake(walkable);
+            }
+        }
+
+        public static void Bake(Walkable walkable) {
             if (AllNodes == null) {
                 AllNodes = new List<Node>();
             }
 
-            if (subdivide > 0) {
-                for (int i = 0; i < subdivide; i++) {
+            Mesh mesh = walkable.GetComponent<MeshFilter>().sharedMesh;
+            if (walkable.Subdivide > 0) {
+                for (int i = 0; i < walkable.Subdivide; i++) {
                     MeshHelper.Subdivide4(mesh);
                 }
             }
-            SetupNavPoints(mesh, transform, vertexExplode);
+            SetupNavPoints(mesh, walkable);
             MergeNodes();
         }
 
-        static void SetupNavPoints(Mesh mesh, Transform transform, float vertexExplode) {
+        static void SetupNavPoints(Mesh mesh, Walkable walkable) {
+            Transform transform = walkable.transform;
+            float vertexExplode = walkable.VertexExplode;
             for (int i = 0; i < mesh.triangles.Length; i += 3) {
                 Vector3 vertex1 = mesh.vertices[mesh.triangles[i]];
                 ScaleVertex(ref vertex1, transform, vertexExplode);
@@ -100,9 +140,9 @@ namespace Test {
                 Vector3 vertex3 = mesh.vertices[mesh.triangles[i + 2]];
                 ScaleVertex(ref vertex3, transform, vertexExplode);
 
-                Node node1 = new Node(vertex1);
-                Node node2 = new Node(vertex2);
-                Node node3 = new Node(vertex3);
+                Node node1 = new Node(walkable, vertex1);
+                Node node2 = new Node(walkable, vertex2);
+                Node node3 = new Node(walkable, vertex3);
 
                 float connection12Length = Math.Abs((vertex1 - vertex2).magnitude);
                 float connection23Length = Math.Abs((vertex2 - vertex3).magnitude);
@@ -142,7 +182,8 @@ namespace Test {
         static void MergeNodes() {
             List<Node> removedNodes = new List<Node>();
             foreach (Node node in AllNodes) {
-                List<Node> matchingPositions = AllNodes.FindAll(findNode => findNode.position == node.position);
+                List<Node> matchingPositions = AllNodes.FindAll(findNode => (findNode.position == node.position) &&
+                                                                            (findNode.Walkable == node.Walkable));
                 foreach (Node matchingNode in matchingPositions) {
                     if (node == matchingNode) {
                         continue;
@@ -162,9 +203,9 @@ namespace Test {
             }
         }
         
-        public Node GetNearestNode(Vector3 position, bool allowInactiveNodes = false) {
-            Node nearestNode = AllNodes[0];
-            foreach (Node node in AllNodes) {
+        public static Node GetNearestNode(List<Node> nodeList, Vector3 position, bool allowInactiveNodes = false) {
+            Node nearestNode = nodeList[0];
+            foreach (Node node in nodeList) {
                 if (allowInactiveNodes || node.Active()) {
                     if ((position - node.position).magnitude < (position - nearestNode.position).magnitude) {
                         nearestNode = node;
@@ -178,16 +219,12 @@ namespace Test {
             return nearestNode;
         }
 
-        public List<Node> GetNodes() {
-            return AllNodes;
-        }
-
-        private bool VectorsClose(Vector3 v1, Vector3 v2) {
+        private static bool VectorsClose(Vector3 v1, Vector3 v2) {
             return (v1 - v2).magnitude < 0.3f;
         }
         
-        public void GenerateFlowField(Vector3 targetPosition) {
-            Node targetNode = GetNearestNode(targetPosition);
+        public void GenerateFlowField(List<Node> nodes, Vector3 targetPosition) {
+            Node targetNode = GetNearestNode(nodes, targetPosition);
             if (targetNode == null) {
                 Debug.LogError("Attempted to generate flow field, however no final node of position found");
                 return;
@@ -235,6 +272,7 @@ namespace Test {
         public int cost = 1;
         public int value = int.MaxValue;
         public Vector3 direction;
+        public Walkable Walkable;
 
         [SerializeField] public int id = 0;
         private static int creationId = 0;
@@ -243,10 +281,11 @@ namespace Test {
         [SerializeField] private static LayerMask collisionLayer = LayerMask.GetMask("PathCollision");
       
 
-        public Node(Vector3 position = new Vector3(), params Node[] connected) {
+        public Node(Walkable walkable, Vector3 position = new Vector3(), params Node[] connected) {
             this.position = position;
             id = creationId;
             creationId++;
+            this.Walkable = walkable;
             NodeList.AllNodes.Add(this);
             foreach (Node node in connected) {
                 ConnectNode(node.id);
