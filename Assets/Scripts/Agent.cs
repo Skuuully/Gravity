@@ -5,7 +5,6 @@ using System.Data;
 using System.Security.Cryptography;
 using Test;
 using UnityEngine;
-using Node = Test.Node;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Health))]

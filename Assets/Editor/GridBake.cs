@@ -8,8 +8,7 @@ using UnityEngine;
 using Object = UnityEngine.Object;
 
 public class GridBake : EditorWindow {
-    private List<Walkable> Walkables;
-    public Walkable[] source;
+    public Walkable source;
     
     [MenuItem("Tools/GridBake")]
     static void Init() {
@@ -20,33 +19,19 @@ public class GridBake : EditorWindow {
     private void OnGUI() {
         GUILayout.Label("Drag an object with a walkable component and click bake to bake its nodes");
 
-        Walkables = NodeList.Walkables;
-        if (Walkables == null || Walkables.Count == 0) {
-            Walkables = new List<Walkable>();
-        }
-        Walkables.Add(null);
+        source = (Walkable) EditorGUILayout.ObjectField(source, typeof(Walkable), true);
 
-        source = Walkables.ToArray();
-        for (int i = 0; i < Walkables.Count; i++) {
-            if (NodeList.Walkables != null && NodeList.Walkables.Count < i) {
-                source[i] = (Walkable) EditorGUILayout.ObjectField(source[i], typeof(Walkable), true);
-            } else {
-                source[i] = (Walkable) EditorGUILayout.ObjectField(Walkables[i], typeof(Walkable), true);
+        if (source != null) {
+            if (GUILayout.Button("Bake")) {
+                Debug.Log("Baking begun");
+                source.Bake();
+                Debug.Log("Baking finished");
             }
-        }
-        
-        NodeList.Walkables = new List<Walkable>(source);
-        NodeList.Walkables.Remove(null);
 
-        if (GUILayout.Button("Bake")) {
-            Debug.Log("Baking begun");
-            NodeList.Bake();
-            Debug.Log("Baking finished");
-        }
-
-        if (GUILayout.Button("Clear")) {
-            NodeList.Clear();
-            Debug.Log("Navigation cleared");
+            if (GUILayout.Button("Clear")) {
+                source.Clear();
+                Debug.Log("Navigation cleared");
+            }
         }
     }
 }
