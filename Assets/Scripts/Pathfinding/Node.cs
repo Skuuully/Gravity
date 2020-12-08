@@ -6,33 +6,47 @@ using UnityEngine;
 
 [Serializable]
 public class Node : MonoBehaviour {
-    public Vector3 position;
-    public int cost = 1;
-    public int value = int.MaxValue;
-    public Vector3 direction;
+    [SerializeField] private int cost;
+    [SerializeField] private int value = int.MaxValue;
+    [SerializeField] private Vector3 direction;
 
-    [SerializeField] public int id = 0;
+    public int Cost => cost;
+    public int Value => value;
+    public Vector3 Direction => direction;
+
+    public int id = 0;
     [NonSerialized] private static int creationId = 0;
     [SerializeField] public List<int> connectedNodes = new List<int>();
+    
+    /// <summary>
+    /// Array to hold contents of sphere overlap, only size of 1 required as only interested as whether there are any
+    /// objects or none
+    /// </summary>
+    private Collider[] _collisionObjects = new Collider[1];
 
-    [NonSerialized] private static LayerMask _collisionLayer;
+    /// <summary>
+    /// Integer value to show that a node is inactive
+    /// </summary>
+    private const int INACTIVE_COST = 255; 
 
-    private void Awake() {
-        _collisionLayer = LayerMask.GetMask("PathCollision");
-    }
-
-    public void Init(Vector3 position = new Vector3(), params Node[] connected) {
-        this.position = position;
+    /// <summary>
+    /// Initialises the node setting up mandatory data
+    /// </summary>
+    public void Init() {
         id = creationId;
         creationId++;
-        foreach (Node node in connected) {
-            ConnectNode(node);
-        }
 
-        Collider[] colliders = Physics.OverlapSphere(position, 0.3f, _collisionLayer);
-        if (colliders?.Length > 0) {
-            cost = 255;
-        }
+        CheckCollisions();
+    }
+
+    public void FixedUpdate() {
+        CheckCollisions();
+    }
+
+    private void CheckCollisions() {
+        Physics.OverlapSphereNonAlloc(
+            transform.position, 0.3f, _collisionObjects, LayerMask.GetMask("PathCollision"));
+        cost = (_collisionObjects[0] != null) ? INACTIVE_COST : 1;
     }
 
     /// <summary>
@@ -64,13 +78,42 @@ public class Node : MonoBehaviour {
         node.connectedNodes = new List<int>();
     }
 
-    public void SetValue(int value, Node shortNode) {
+    /// <summary>
+    /// Sets the value of the node, additionally can pass the node that it is connected to in order to determine in
+    /// which this node should point
+    /// </summary>
+    /// <param name="value">The value</param>
+    /// <param name="routeNode">An optional node which is the node to go from to get to this node that gave the value</param>
+    public void SetValue(int value, Node routeNode = null) {
         this.value = value;
-        direction = shortNode.position - position;
+        if (routeNode != null) {
+            direction = routeNode.Position() - Position();
+            direction.Normalize();
+        }
+    }
+
+    /// <summary>
+    /// Sets the direction of the node and normalizes it
+    /// </summary>
+    /// <param name="dir">The direction to set</param>
+    public void SetDirection(Vector3 dir) {
+        direction = dir;
         direction.Normalize();
     }
 
+    /// <summary>
+    /// Determines if the node is active, a node may be inactive if something is blocking it e.g. a collision
+    /// </summary>
+    /// <returns>Whether this node is active</returns>
     public bool Active() {
-        return cost != 255;
+        return cost != INACTIVE_COST;
+    }
+
+    /// <summary>
+    /// Utility method to make calls to the position more succinct
+    /// </summary>
+    /// <returns>The nodes position</returns>
+    public Vector3 Position() {
+        return transform.position;
     }
 }

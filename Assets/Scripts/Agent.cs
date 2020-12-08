@@ -55,7 +55,7 @@ public class Agent : MonoBehaviour, IDamage {
     /// </summary>
     void Rotate() {
         _flowNode = pathFindingGrid.GetNearestNode(transform.position, _flowNode);
-        var direction = ShouldUseFlowNodeDirection(_flowNode) ? _flowNode.direction : transform.forward;
+        var direction = ShouldUseFlowNodeDirection(_flowNode) ? _flowNode.Direction : transform.forward;
 
         Quaternion targetRotation = Quaternion.LookRotation(direction, transform.up);
 
@@ -71,7 +71,7 @@ public class Agent : MonoBehaviour, IDamage {
     /// <returns>Whether the flow nodes direction should or should not be used</returns>
     bool ShouldUseFlowNodeDirection(Node flowNode) {
         bool shouldUseFlow = true;
-        Ray ray = new Ray(transform.position, flowNode.direction);
+        Ray ray = new Ray(transform.position, flowNode.Direction);
         if (Physics.Raycast(ray, out var hitInfo, 1.5f)) {
             var walkable = hitInfo.collider.gameObject.GetComponent<Walkable>();
             if (walkable != null) {

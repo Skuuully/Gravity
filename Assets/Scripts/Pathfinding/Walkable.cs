@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Test {
 
@@ -98,26 +99,26 @@ namespace Test {
 
         private Node CreateNode(Vector3 position) {
             GameObject nodeObject = new GameObject();
+            nodeObject.transform.parent = nodeHolder.transform;
+            nodeObject.transform.position = position;
             Node node = nodeObject.AddComponent<Node>();
-            node.Init(position);
+            node.Init();
             nodeObject.name = "Node: " + node.id;
 
             _nodes.Add(node);
-            nodeObject.transform.parent = nodeHolder.transform;
-            nodeObject.transform.position = position;
             return node;
         }
 
         private void SetAllUnreachable() {
             foreach (Node node in _nodes) {
-                node.value = int.MaxValue;
+                node.SetValue(int.MaxValue);
             }
         }
 
         private void MergeNodes() {
             List<Node> removedNodes = new List<Node>();
             foreach (Node node in _nodes) {
-                List<Node> matchingPositions = _nodes.FindAll(findNode => (findNode.position == node.position));
+                List<Node> matchingPositions = _nodes.FindAll(findNode => (findNode.Position() == node.Position()));
                 foreach (Node matchingNode in matchingPositions) {
                     if (node == matchingNode) {
                         continue;
@@ -156,9 +157,8 @@ namespace Test {
             }
 
             SetAllUnreachable();
-            targetNode.value = 0;
-            targetNode.direction = targetPosition - targetNode.position;
-            targetNode.direction.Normalize();
+            targetNode.SetValue(0);
+            targetNode.SetDirection(targetPosition - targetNode.Position());
 
             Node currentNode = targetNode;
             List<Node> open = new List<Node> {currentNode};
@@ -167,9 +167,9 @@ namespace Test {
                 open.Remove(currentNode);
                 foreach (int connectedNodeID in currentNode.connectedNodes) {
                     Node connectedNode = _nodes.Find(node => node.id == connectedNodeID);
-                    if (connectedNode.cost != 255) {
-                        int pathLength = currentNode.value + connectedNode.cost;
-                        if (pathLength < connectedNode.value) {
+                    if (connectedNode.Active()) {
+                        int pathLength = currentNode.Value + connectedNode.Cost;
+                        if (pathLength < connectedNode.Value) {
                             if (!open.Contains(connectedNode)) {
                                 open.Add(connectedNode);
                             }
@@ -208,9 +208,9 @@ namespace Test {
             Node nearestNode = nodes[0];
             foreach (Node node in nodes) {
                 if (allowInactiveNodes || node.Active()) {
-                    if ((position - node.position).magnitude < (position - nearestNode.position).magnitude) {
+                    if ((position - node.Position()).magnitude < (position - nearestNode.Position()).magnitude) {
                         nearestNode = node;
-                        if (position == node.position || (position - node.position).magnitude < 0.3f) {
+                        if (position == node.Position() || (position - node.Position()).magnitude < 0.3f) {
                             break;
                         }
                     }
@@ -226,26 +226,23 @@ namespace Test {
                     foreach (Node node in _nodes) {
                         foreach (int i in node.connectedNodes) {
                             Node connected = _nodes.Find(node1 => node1.id == i);
-                            Gizmos.color = Color.magenta;
-                            Gizmos.DrawLine(connected.position, node.position);
-                            Gizmos.DrawSphere(node.position, 0.1f);
+                            Gizmos.color = node.Active() ? Color.green : Color.black;
+                            Gizmos.DrawLine(connected.Position(), node.Position());
+                            Gizmos.DrawSphere(node.Position(), 0.1f);
                         }
                     }
                 } else {
                     foreach (var node in _nodes) {
-                        if (node.cost != 255) {
-                            Color color = new Color();
-                            color.r = 0f;
-                            color.b = 0f;
-                            color.g = 1f - (node.value / 7f);
+                        if (node.Active()) {
+                            Color color = new Color {r = 0f, b = 0f, g = 1f - (node.Value / 7f)};
                             if (color.g < 0) {
                                 color.g = 0f;
                             }
 
                             color.a = 1f;
                             Gizmos.color = color;
-                            Gizmos.DrawSphere(node.position, 0.1f);
-                            Gizmos.DrawLine(node.position, node.position + node.direction);
+                            Gizmos.DrawSphere(node.Position(), 0.1f);
+                            Gizmos.DrawLine(node.Position(), node.Position() + node.Direction);
                         }
                     }
                 }

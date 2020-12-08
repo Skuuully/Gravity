@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Teleporter : MonoBehaviour, IInteractable {
     private bool _active = true;
+    private bool _usable = true;
     private Material _material;
     private Color _activeColor = new Color(0, 1f, 0f, 0.5f);
     private Color _inactiveColor = new Color(1f, 0.5f, 0f, 0.3f);
@@ -17,17 +18,18 @@ public class Teleporter : MonoBehaviour, IInteractable {
         SetActive(false);
     }
 
-    public void SetActive(bool value) {
+    private void SetActive(bool value) {
         _active = value;
         _material.color = _active ? _activeColor : _inactiveColor;
     }
 
     public void Interact() {
-        if (_active) {
+        if (_usable && _active) {
             SceneManagement.Instance.TransitionToNext();
         } else {
             if (PlayerCurrency.Instance.Purchase(cost)) {
                 SetActive(true);
+                _usable = false;
             }
         }
     }
