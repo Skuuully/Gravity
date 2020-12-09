@@ -26,10 +26,10 @@ public class Teleporter : MonoBehaviour, IInteractable {
     public void Interact() {
         if (_usable && _active) {
             SceneManagement.Instance.TransitionToNext();
+            _usable = false;
         } else {
             if (PlayerCurrency.Instance.Purchase(cost)) {
                 SetActive(true);
-                _usable = false;
             }
         }
     }

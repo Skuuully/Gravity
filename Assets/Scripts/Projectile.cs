@@ -5,7 +5,7 @@ using Test;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Projectile : MonoBehaviour, IDamage {
+public class Projectile : MonoBehaviour {
     private Rigidbody _rigidbody;
     [SerializeField] private float _forwardsForce = 100f;
     
@@ -17,20 +17,5 @@ public class Projectile : MonoBehaviour, IDamage {
     // Update is called once per frame
     void FixedUpdate() {
         _rigidbody.velocity = transform.forward * (_forwardsForce * Time.deltaTime);
-    }
-
-    private void OnCollisionEnter(Collision other) {
-        if (other.gameObject.layer == LayerMask.NameToLayer("PathCollision")) {
-            Destroy(gameObject);
-        }
-    }
-
-    public float GetDamage() {
-        Destroy(gameObject);
-        return 1;
-    }
-
-    public List<Health> GetSafe() {
-        return new List<Health>();
     }
 }

@@ -44,6 +44,7 @@ public class Node : MonoBehaviour {
     }
 
     private void CheckCollisions() {
+        _collisionObjects[0] = null;
         Physics.OverlapSphereNonAlloc(
             transform.position, 0.3f, _collisionObjects, LayerMask.GetMask("PathCollision"));
         cost = (_collisionObjects[0] != null) ? INACTIVE_COST : 1;
@@ -115,5 +116,11 @@ public class Node : MonoBehaviour {
     /// <returns>The nodes position</returns>
     public Vector3 Position() {
         return transform.position;
+    }
+
+    private void OnDrawGizmosSelected() {
+        Color color = Active() ? Color.green : Color.red;
+        Gizmos.color = color;
+        Gizmos.DrawSphere(Position(), 0.1f);
     }
 }

@@ -220,28 +220,26 @@ namespace Test {
             return nearestNode;
         }
 
+        /// <summary>
+        /// Responsible for drawing the connections between nodes
+        /// </summary>
         private void OnDrawGizmosSelected() {
             if (_nodes?.Count > 0) {
-                if (!Application.isPlaying) {
-                    foreach (Node node in _nodes) {
+                foreach (Node node in _nodes) {
+                    if (!Application.isPlaying) {
                         foreach (int i in node.connectedNodes) {
                             Node connected = _nodes.Find(node1 => node1.id == i);
                             Gizmos.color = node.Active() ? Color.green : Color.black;
                             Gizmos.DrawLine(connected.Position(), node.Position());
-                            Gizmos.DrawSphere(node.Position(), 0.1f);
                         }
-                    }
-                } else {
-                    foreach (var node in _nodes) {
+                    } else {
                         if (node.Active()) {
-                            Color color = new Color {r = 0f, b = 0f, g = 1f - (node.Value / 7f)};
+                            Color color = new Color {r = 0f, b = 0f, g = 1f - (node.Value / 7f), a = 1f};
                             if (color.g < 0) {
                                 color.g = 0f;
                             }
 
-                            color.a = 1f;
                             Gizmos.color = color;
-                            Gizmos.DrawSphere(node.Position(), 0.1f);
                             Gizmos.DrawLine(node.Position(), node.Position() + node.Direction);
                         }
                     }
