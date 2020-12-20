@@ -13,6 +13,7 @@ public class Agent : MonoBehaviour, IDamage {
     [SerializeField] private Walkable pathFindingGrid;
     private Node _flowNode = null;
     private Health _health;
+    private bool _canMove;
 
     private Rigidbody _rigidbody;
     public int speed = 600;
@@ -47,7 +48,7 @@ public class Agent : MonoBehaviour, IDamage {
     }
 
     void Move() {
-        _rigidbody.velocity = transform.forward * speed * Time.deltaTime;
+        _rigidbody.velocity = _canMove ? transform.forward * (speed * Time.deltaTime) : Vector3.zero;
     }
     
     /// <summary>
@@ -56,6 +57,12 @@ public class Agent : MonoBehaviour, IDamage {
     void Rotate() {
         _flowNode = pathFindingGrid.GetNearestNode(transform.position, _flowNode);
         var direction = ShouldUseFlowNodeDirection(_flowNode) ? _flowNode.Direction : transform.forward;
+
+        _canMove = true;
+        if (Physics.Raycast(new Ray(transform.position, direction), out var raycastHit, 0.6f)) {
+            var agent = raycastHit.collider.gameObject.GetComponent<Agent>();
+            _canMove = agent == null;
+        }
 
         Quaternion targetRotation = Quaternion.LookRotation(direction, transform.up);
 

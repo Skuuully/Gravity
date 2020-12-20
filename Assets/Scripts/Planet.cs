@@ -7,13 +7,15 @@ using UnityEngine.SceneManagement;
 
 public class Planet : MonoBehaviour {
     [SerializeField] private Vector3 spawnPosition;
+    [SerializeField] private Quaternion spawnRotation;
     private Walkable _walkable;
 
     private void Awake() {
         SceneManager.sceneLoaded += OnSceneLoaded;
-        if (spawnPosition == Vector3.zero) {
-            spawnPosition = GetComponentInChildren<PlayerSpawnPoint>().transform.position;
-        }
+
+        var spawnPoint = GetComponentInChildren<PlayerSpawnPoint>().transform;
+        spawnPosition = spawnPoint.position;
+        spawnRotation = spawnPoint.rotation;
 
         _walkable = GetComponent<Walkable>();
     }
@@ -25,7 +27,9 @@ public class Planet : MonoBehaviour {
             return;
         }
 
-        playerController.gameObject.transform.position = spawnPosition;
+        Transform playerTransform = playerController.gameObject.transform; 
+        playerTransform.position = spawnPosition;
+        playerTransform.rotation = spawnRotation;
         
         if (_walkable != null) {
             _walkable.playerTransform = playerController.gameObject.transform;

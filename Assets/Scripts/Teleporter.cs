@@ -15,7 +15,8 @@ public class Teleporter : MonoBehaviour, IInteractable {
     private void Awake() {
         _material = GetComponent<MeshRenderer>().material;
         _material.color = _active ? _activeColor : _inactiveColor;
-        SetActive(false);
+        bool active = cost > 0;
+        SetActive(active);
     }
 
     private void SetActive(bool value) {
