@@ -8,6 +8,6 @@ namespace Test {
 
         float GetInteractRadius();
 
-        void ShowText(bool visible);
+        string GetText();
     }
 }

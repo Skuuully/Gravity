@@ -33,17 +33,18 @@ public class PlayerInteractor : MonoBehaviour {
 
     private void FixedUpdate() {
         _closestInteractable = FindClosestInteractable();
-        if (_closestInteractable != null) {
+        if (_closestInteractable == null) {
+            GameUi.Instance.ClearInteractableText();
+        } else {
             float distance = (transform.position - _closestInteractable.GetPosition()).magnitude;
             if (distance < _closestInteractable.GetInteractRadius()) {
                 if (_closestInteractable != null && _playerInput.interact) {
                     _closestInteractable.Interact();
                 }
 
-                _closestInteractable.ShowText(true);
-                if (_previousClosest != null && _previousClosest != _closestInteractable) {
-                    _previousClosest.ShowText(false);
-                }
+                GameUi.Instance.SetInteractableText(_closestInteractable.GetText());
+            } else {
+                GameUi.Instance.ClearInteractableText();
             }
         }
     }

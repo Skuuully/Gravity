@@ -12,6 +12,9 @@ public class Teleporter : MonoBehaviour, IInteractable {
     private Color _inactiveColor = new Color(1f, 0.5f, 0f, 0.3f);
     [SerializeField] private int cost;
 
+    private const string activeText = "'E' to teleport";
+    private const string inactiveText = "'E' to activate";
+
     private void Awake() {
         _material = GetComponent<MeshRenderer>().material;
         _material.color = _active ? _activeColor : _inactiveColor;
@@ -42,7 +45,15 @@ public class Teleporter : MonoBehaviour, IInteractable {
         return 2f;
     }
 
-    public void ShowText(bool visible) {
-        
+    public string GetText() {
+        string text;
+        if (_active) {
+            text = activeText;
+        } else {
+            text = inactiveText;
+            text += " costs " + cost;
+        }
+
+        return text;
     }
 }
