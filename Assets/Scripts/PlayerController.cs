@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour {
         Vector3 movement = new Vector3(_playerInput.X, 0, _playerInput.Y);
         movement.Normalize();
         if (movement != Vector3.zero) {
-            _rigidbody.MovePosition(transform.position + (transform.TransformDirection(movement) * moveSpeed * Time.deltaTime));
+            _rigidbody.MovePosition(transform.position + (transform.TransformDirection(movement) * (moveSpeed * Time.deltaTime)));
         }
     }
 }
