@@ -5,8 +5,7 @@ using UnityEngine;
 public class PositionWeapon : MonoBehaviour {
     [SerializeField] private Transform _weaponTransform;
 
-    // Update is called once per frame
-    void Update() {
+    void FixedUpdate() {
         Plane plane = new Plane(transform.up, transform.position);
         Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (plane.Raycast(mouseRay, out float enterPoint)) {

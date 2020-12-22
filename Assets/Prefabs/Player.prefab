@@ -134,6 +134,7 @@ MonoBehaviour:
   Y: 0
   fire: 0
   interact: 0
+  cancel: 0
 --- !u!114 &2384744734786599494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,8 +189,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30afb88281fb9a44b95352bd00601efe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EditorCurrentHealth: 10
-  EditorMaxHealth: 10
+  EditorCurrentHealth: 5
+  EditorMaxHealth: 5
 --- !u!114 &2544720118206058993
 MonoBehaviour:
   m_ObjectHideFlags: 0

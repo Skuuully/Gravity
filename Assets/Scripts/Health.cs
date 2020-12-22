@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using Test;
 using UnityEngine;
 
-public class Health : MonoBehaviour, IObservable<float> {
+public class Health : MonoBehaviour {
     public delegate void OnDeath();
     public event OnDeath onDeathObservers;
+    public delegate void onHealthChange();
+    public event onHealthChange onHealthChangeObservers;
 
     public float EditorCurrentHealth;
     public float EditorMaxHealth;
@@ -15,8 +17,6 @@ public class Health : MonoBehaviour, IObservable<float> {
 
     public float CurrentHealth => _currentHealth;
     public float MaxHealth => _maxHealth;
-
-    private List<IObserver<float>> observers = new List<IObserver<float>>();
 
     private void Awake() {
         Rigidbody rb = GetComponent<Rigidbody>();
@@ -33,17 +33,25 @@ public class Health : MonoBehaviour, IObservable<float> {
 
     void TakeDamage(float damage) {
         _currentHealth -= damage;
-        foreach (var observer in observers) {
-            observer.OnNext(_currentHealth);
-        }
-        
+        onHealthChangeObservers?.Invoke();
+
         if (_currentHealth <= 0) {
             Kill();
         }
-        
+    }
+
+    public void Heal(float value, int maxHealthIncrease = -1) {
+        _currentHealth += value;
+        if (maxHealthIncrease != -1) {
+            _maxHealth += maxHealthIncrease;
+        }
+
+        _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth);
+        onHealthChangeObservers?.Invoke();
     }
 
     public void Kill() {
+        onHealthChangeObservers?.Invoke();
         onDeathObservers?.Invoke();
         Destroy(gameObject);
     }
@@ -61,30 +69,6 @@ public class Health : MonoBehaviour, IObservable<float> {
 
         if (damage != null && !damage.GetSafe().Contains(this)) {
             TakeDamage(damage.GetDamage());
-        }
-    }
-
-    public IDisposable Subscribe(IObserver<float> observer) {
-        if (!observers.Contains(observer)) {
-            observers.Add(observer);
-        }
-
-        return new Unsubscriber(observers, observer);
-    }
-}
-
-internal class Unsubscriber : IDisposable {
-    private List<IObserver<float>> _observers;
-    private IObserver<float> _observer;
-
-    internal Unsubscriber(List<IObserver<float>> observers, IObserver<float> observer) {
-        _observers = observers;
-        _observer = observer;
-    }
-
-    public void Dispose() {
-        if (_observers.Contains(_observer)) {
-            _observers.Remove(_observer);
         }
     }
 }
