@@ -15,8 +15,8 @@ TagManager:
   - 
   - PathCollision
   - Enemy
-  - 
-  - 
+  - EnemyProjectile
+  - Player
   - 
   - 
   - 

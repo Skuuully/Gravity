@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Security.Cryptography;
 using Test;
 using UnityEngine;
@@ -10,6 +11,7 @@ using UnityEngine;
 [RequireComponent(typeof(Health))]
 public class Agent : MonoBehaviour, IDamage {
     private static List<Health> agentHealth = new List<Health>();
+    private List<Health> _safe = new List<Health>();
     private Health _health;
 
     private Rigidbody _rigidbody;
@@ -37,12 +39,18 @@ public class Agent : MonoBehaviour, IDamage {
         }
     }
 
+    public void AddSafe(Health other) {
+        _safe.Add(other);
+    }
+
     public float GetDamage() {
         _health.Kill();
         return _health.CurrentHealth;
     }
 
     public List<Health> GetSafe() {
-        return agentHealth;
+        List<Health> safe = _safe.ToList();
+        safe.AddRange(agentHealth);
+        return safe;
     }
 }

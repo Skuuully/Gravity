@@ -46,7 +46,7 @@ public class Node : MonoBehaviour {
     private void CheckCollisions() {
         _collisionObjects[0] = null;
         Physics.OverlapSphereNonAlloc(
-            transform.position, 0.3f, _collisionObjects, LayerMask.GetMask("PathCollision"));
+            transform.position, 0.5f, _collisionObjects, LayerMask.GetMask("PathCollision"));
         cost = (_collisionObjects[0] != null) ? INACTIVE_COST : 1;
     }
 

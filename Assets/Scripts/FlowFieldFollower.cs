@@ -33,14 +33,12 @@ public class FlowFieldFollower : MonoBehaviour {
     }
     
     private void FixedUpdate() {
-        if (_enabled) {
-            Rotate();
-            Move();
-        }
+        Move();
+        Rotate();
     }
 
     void Move() {
-        _rigidbody.velocity = _canMove ? transform.forward * (speed * Time.deltaTime) : Vector3.zero;
+        _rigidbody.velocity = (_canMove && _enabled) ? transform.forward * (speed * Time.deltaTime) : Vector3.zero;
     }
     
     /// <summary>

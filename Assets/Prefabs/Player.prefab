@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 2384744734786599502}
   - component: {fileID: 4792257593870706454}
   - component: {fileID: 2544720118206058993}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 2384744736542307791}
   - component: {fileID: 2384744736542307787}
   - component: {fileID: 2384744736542307784}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,7 +337,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2384744736553753226}
   - component: {fileID: 2384744736553753237}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

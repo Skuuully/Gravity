@@ -4,6 +4,8 @@ using Test;
 using UnityEngine;
 
 public class DamagingProjectile : Projectile, IDamage {
+    private List<Health> _safe = new List<Health>();
+
     private void OnCollisionEnter(Collision other) {
         if (other.gameObject.layer == LayerMask.NameToLayer("PathCollision")) {
             Destroy(gameObject);
@@ -16,6 +18,6 @@ public class DamagingProjectile : Projectile, IDamage {
     }
 
     public List<Health> GetSafe() {
-        return new List<Health>();
+        return _safe;
     }
 }
