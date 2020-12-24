@@ -3,16 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Timer))]
 public class ShootState : State {
     [SerializeField] private GameObject projectile;
     [SerializeField] private float fireRate;
-    private Timer _timer;
+    private Timer _timer = new Timer();
 
     protected override void Awake() {
         base.Awake();
-        _timer = GetComponent<Timer>();
-        _timer.Initialise(fireRate);
+        _timer.RunningTime = fireRate;
         _timer.Start();
     }
 

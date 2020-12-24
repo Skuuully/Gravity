@@ -1,16 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-[RequireComponent(typeof(Timer))]
 public class Weapon : MonoBehaviour {
     [SerializeField] private Transform spawnPoint;
-    private Timer _shotTimer;
+    private Timer _shotTimer = new Timer();
     [SerializeField] private GameObject _projectilePrefab;
+    [SerializeField] private float fireRate;
 
-    // Start is called before the first frame update
-    void Start() {
-        _shotTimer = GetComponent<Timer>();
+    private void Awake() {
+        _shotTimer.RunningTime = fireRate;
     }
 
     public void Shoot() {

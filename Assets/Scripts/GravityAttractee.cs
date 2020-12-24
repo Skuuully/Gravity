@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Test;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -18,10 +19,8 @@ public class GravityAttractee : MonoBehaviour {
         _rigidbody.useGravity = false;
         _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
+    
+    void Update() {
         AttemptGravity();
     }
 

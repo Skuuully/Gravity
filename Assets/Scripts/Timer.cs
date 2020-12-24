@@ -1,12 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Timer : MonoBehaviour {
+public class Timer {
     private float _startTime = 0f;
-    [SerializeField] private float _runningTime = 1f;
+    private float _runningTime = 1f;
 
-    public void Initialise(float runningTime) {
+    public float RunningTime {
+        set => _runningTime = value;
+    }
+
+    public Timer(float runningTime = 1) {
         _runningTime = runningTime;
     }
 

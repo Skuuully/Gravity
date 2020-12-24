@@ -5,6 +5,7 @@ public class PlayerInput : MonoBehaviour {
     public float X = 0;
     public float Y = 0;
     public bool fire = false;
+    public bool rmb = false;
     public bool interact = false;
     public bool cancel = false;
 
@@ -24,8 +25,8 @@ public class PlayerInput : MonoBehaviour {
         X = Input.GetAxis("Horizontal");
         Y = Input.GetAxis("Vertical");
         fire = Input.GetButton("Fire1");
+        rmb = Input.GetButtonUp("Fire2");
         interact = Input.GetButtonUp("Interact");
-
     }
 
     private void SetupUiCanvas() {
