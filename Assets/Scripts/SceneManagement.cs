@@ -18,8 +18,8 @@ public class SceneManagement : MonoBehaviour {
 
     public static SceneManagement Instance => _instance;
 
-    private const int MAIN_MENU_INDEX = 0; 
-    private const int FIRST_LEVEL_INDEX = 1; 
+    private const int MAIN_MENU_INDEX = 0;
+    private const int FIRST_LEVEL_INDEX = 1;
 
     private void Awake() {
         if (_instance != null) {
@@ -34,6 +34,7 @@ public class SceneManagement : MonoBehaviour {
         foreach (GameObject o in dontDestroy) {
             DontDestroyOnLoad(o);
         }
+
         var scenes = EditorBuildSettings.scenes;
         foreach (var scene in scenes) {
             _scenes.Add(scene.path);
@@ -41,11 +42,12 @@ public class SceneManagement : MonoBehaviour {
     }
 
     public void TransitionToNext() {
-        if (_currentIndex + 1 >=  _scenes.Count) {
-            Debug.LogWarning("Attempting to load scene at index: " + (_currentIndex + 1) + " but only: " 
+        if (_currentIndex + 1 >= _scenes.Count) {
+            Debug.LogWarning("Attempting to load scene at index: " + (_currentIndex + 1) + " but only: "
                              + _scenes.Count + " available");
             return;
         }
+
         StartCoroutine(LoadScene());
     }
 
@@ -59,15 +61,21 @@ public class SceneManagement : MonoBehaviour {
         StartCoroutine(LoadScene(_currentIndex));
     }
 
+    public void ReloadCurrentLevel() {
+        StartCoroutine(LoadScene(_currentIndex));
+    }
+
+
     public void Quit() {
         Application.Quit();
     }
 
     IEnumerator LoadScene(int sceneNumber = -1) {
+        Time.timeScale = 0f;
         fadeAnimator.SetTrigger(FadeOut);
         yield return new WaitForSecondsRealtime(1f);
 
-        int index;
+        int index; 
         if (sceneNumber > -1) {
             index = sceneNumber;
             _currentIndex = sceneNumber;
@@ -81,6 +89,7 @@ public class SceneManagement : MonoBehaviour {
         SceneManager.LoadScene(_scenes[index]);
 
         SceneLoaded();
+        Time.timeScale = 1f;
     }
 
     private void ActivatePlayer(bool active) {
@@ -103,7 +112,6 @@ public class SceneManagement : MonoBehaviour {
     private void SceneLoaded() {
         if (_currentIndex == MAIN_MENU_INDEX) {
             PurgeDontDestroy();
-            Time.timeScale = 1f;
         } else {
             ActivatePlayer(true);
         }

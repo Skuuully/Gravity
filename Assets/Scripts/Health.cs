@@ -53,7 +53,11 @@ public class Health : MonoBehaviour {
     public void Kill() {
         onHealthChangeObservers?.Invoke();
         onDeathObservers?.Invoke();
-        Destroy(gameObject);
+
+        // Really don't like this way of doing it but for now it works TODO: fix me
+        if (gameObject.name != "Player") {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other) {
