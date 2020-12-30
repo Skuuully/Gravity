@@ -43,6 +43,13 @@ public class PauseCanvas : MonoBehaviour {
     private void OnPlayerDeath() {
         ToggleActive();
         ToggleState(false);
+    }
+
+    public void HealPlayerToHalf() {
         _playerHealth.Heal(Mathf.Ceil(_playerHealth.MaxHealth / 2.0f));
+    }
+    
+    public void HealPlayerToFull() {
+        _playerHealth.Heal(_playerHealth.MaxHealth);
     }
 }

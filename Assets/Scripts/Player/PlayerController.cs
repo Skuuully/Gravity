@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour {
     private void Awake() {
         _rigidbody = GetComponent<Rigidbody>();
         _playerInput = GetComponent<PlayerInput>();
-        DontDestroyOnLoad(gameObject);
     }
 
     private void Update() {

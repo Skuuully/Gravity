@@ -17,9 +17,10 @@ public class SceneManagement : MonoBehaviour {
     private static readonly int FadeOut = Animator.StringToHash("FadeOut");
 
     public static SceneManagement Instance => _instance;
+    public List<string> Scenes => _scenes;
 
-    private const int MAIN_MENU_INDEX = 0;
-    private const int FIRST_LEVEL_INDEX = 1;
+    public const int MAIN_MENU_INDEX = 1;
+    private const int FIRST_LEVEL_INDEX = 2;
 
     private void Awake() {
         if (_instance != null) {
@@ -52,7 +53,7 @@ public class SceneManagement : MonoBehaviour {
     }
 
     public void LoadMainMenu() {
-        _currentIndex = 0;
+        _currentIndex = MAIN_MENU_INDEX;
         StartCoroutine(LoadScene(_currentIndex));
     }
 
@@ -72,8 +73,6 @@ public class SceneManagement : MonoBehaviour {
 
     IEnumerator LoadScene(int sceneNumber = -1) {
         Time.timeScale = 0f;
-        fadeAnimator.SetTrigger(FadeOut);
-        yield return new WaitForSecondsRealtime(1f);
 
         int index; 
         if (sceneNumber > -1) {
@@ -83,12 +82,24 @@ public class SceneManagement : MonoBehaviour {
             _currentIndex++;
             index = _currentIndex;
         }
+        var ao = SceneManager.LoadSceneAsync(_scenes[index], LoadSceneMode.Single);
+        ao.allowSceneActivation = false;
+
+        fadeAnimator.SetTrigger(FadeOut);
+        yield return new WaitForSecondsRealtime(1f);
+
+
+        while (!ao.isDone) {
+            if (ao.progress >= 0.9f) {
+                ActivatePlayer(_currentIndex > MAIN_MENU_INDEX);
+                ao.allowSceneActivation = true;
+            }
+            yield return null;
+        }
 
         bool showGameUi = index >= FIRST_LEVEL_INDEX;
         gameUiCanvas.gameObject.SetActive(showGameUi);
-        SceneManager.LoadScene(_scenes[index]);
 
-        SceneLoaded();
         Time.timeScale = 1f;
     }
 
@@ -101,19 +112,5 @@ public class SceneManagement : MonoBehaviour {
 
         var player = playerControllers[0];
         player.gameObject.SetActive(active);
-    }
-
-    private void PurgeDontDestroy() {
-        foreach (var o in gameObject.scene.GetRootGameObjects()) {
-            Destroy(o);
-        }
-    }
-
-    private void SceneLoaded() {
-        if (_currentIndex == MAIN_MENU_INDEX) {
-            PurgeDontDestroy();
-        } else {
-            ActivatePlayer(true);
-        }
     }
 }
