@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+[RequireComponent(typeof(Health))]
 public class EnemySpawner : MonoBehaviour {
     [SerializeField] private int maxEnemies;
     [SerializeField] private float spawnRate;
