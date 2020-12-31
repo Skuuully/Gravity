@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localGravityStrength: 1
+  editorAlignToSurface: 0
 --- !u!54 &2384744734786599500
 Rigidbody:
   m_ObjectHideFlags: 0

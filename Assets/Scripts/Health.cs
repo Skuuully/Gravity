@@ -24,6 +24,9 @@ public class Health : MonoBehaviour {
             Debug.LogWarning(gameObject.name
                              + " has no rigidbody and has a health component, its health will never lower");
         }
+
+        _currentHealth = EditorCurrentHealth;
+        _maxHealth = EditorMaxHealth;
     }
 
     private void OnValidate() {

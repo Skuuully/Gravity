@@ -36,9 +36,9 @@ public class SceneManagement : MonoBehaviour {
             DontDestroyOnLoad(o);
         }
 
-        var scenes = EditorBuildSettings.scenes;
-        foreach (var scene in scenes) {
-            _scenes.Add(scene.path);
+        int sceneCount = SceneManager.sceneCountInBuildSettings;
+        for( int i = 0; i < sceneCount; i++ ) {
+            _scenes.Add(SceneUtility.GetScenePathByBuildIndex(i));
         }
     }
 

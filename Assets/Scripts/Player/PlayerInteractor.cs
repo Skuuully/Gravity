@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Test;
-using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -31,6 +28,13 @@ public class PlayerInteractor : MonoBehaviour {
         UpdateInteractables();
     }
 
+    private void Update() {
+        if (_closestInteractable != null && _playerInput.interact) {
+            _closestInteractable.Interact();
+            UpdateInteractables();
+        }
+    }
+
     private void FixedUpdate() {
         _closestInteractable = FindClosestInteractable();
         if (_closestInteractable == null) {
@@ -38,10 +42,6 @@ public class PlayerInteractor : MonoBehaviour {
         } else {
             float distance = (transform.position - _closestInteractable.GetPosition()).magnitude;
             if (distance < _closestInteractable.GetInteractRadius()) {
-                if (_closestInteractable != null && _playerInput.interact) {
-                    _closestInteractable.Interact();
-                }
-
                 GameUi.Instance.SetInteractableText(_closestInteractable.GetText());
             } else {
                 GameUi.Instance.ClearInteractableText();
@@ -54,11 +54,13 @@ public class PlayerInteractor : MonoBehaviour {
         IInteractable nearest = null;
         float minDistance = float.MaxValue;
         foreach (var interactable in _interactables) {
-             float currDistance = (interactable.GetPosition() - transform.position).magnitude;
-             if (currDistance < minDistance) {
-                 nearest = interactable;
-                 minDistance = currDistance;
-             }
+            if (interactable != null) {
+                float currDistance = (interactable.GetPosition() - transform.position).magnitude;
+                if (currDistance < minDistance) {
+                    nearest = interactable;
+                    minDistance = currDistance;
+                }
+            }
         }
 
         return nearest;
